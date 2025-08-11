@@ -1,0 +1,4616 @@
+{
+  "name": "prueba cursor",
+  "nodes": [
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.data.message.audioMessage.url }}",
+                    "rightValue": 0,
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "235d329d-3a25-48c7-8996-f8dadfc6bd84"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Audio"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c51d82b0-96f7-4461-a501-5649f161f0c3",
+                    "leftValue": "={{ $json[\"body\"][\"data\"][\"message\"][\"conversation\"] }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "texto"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -4144,
+        1936
+      ],
+      "id": "d485362a-c0d1-428b-9037-46992c6155ac",
+      "name": "🔀 Tipo de respuesta (texto o audio)"
+    },
+    {
+      "parameters": {
+        "content": "## RECIBIR MENSAJE",
+        "height": 240,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -4016,
+        1424
+      ],
+      "typeVersion": 1,
+      "id": "3eab31a6-40ef-427d-83d8-885d8f3caca9",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## AUDIO/TEXTO",
+        "height": 240,
+        "width": 200,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -4192,
+        1856
+      ],
+      "typeVersion": 1,
+      "id": "fd1ffcb8-7980-4e8d-ac85-b8e3f8f3184f",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -3136,
+        2432
+      ],
+      "id": "282e0390-9de1-455a-86fa-da1afcd9dfba",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "pDno7JBab3nVoLVV",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## FECHAS CERCANAS",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1040,
+        2144
+      ],
+      "typeVersion": 1,
+      "id": "b8ba56a7-85a1-4875-8842-69a3b6f32092",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## RESULTADO DE MUNICIPIO SOLICITADO\n",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        816,
+        2144
+      ],
+      "typeVersion": 1,
+      "id": "764be54b-282e-486e-bd9a-9a54355df518",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## OBTENER DIAS Y DESTINOS",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        2144
+      ],
+      "typeVersion": 1,
+      "id": "a027b8ea-1171-4100-b5f4-65d3a5eea2fe",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## REGISTRO DE DIAS Y DESTINOS",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        368,
+        2144
+      ],
+      "typeVersion": 1,
+      "id": "855bd2b6-023f-42f0-83e1-e6f5a2048195",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.intencion }}",
+                    "rightValue": "aceptar",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "edde6a54-99c5-483d-b9b9-719828248870"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "aceptar"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "382579a1-0b64-444a-a395-3ad0a103c6d1",
+                    "leftValue": "={{ $json.intencion }}",
+                    "rightValue": "queja",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "queja"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6ad16d48-b215-41b8-ac89-b5b219d196e0",
+                    "leftValue": "={{ $json.intencion }}",
+                    "rightValue": "rechazo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "rechazo"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -2160,
+        2192
+      ],
+      "id": "4e6a4c0b-27f4-4b4e-8eac-62d2f628e8fc",
+      "name": "Switch",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.data.message.conversation }}",
+        "options": {
+          "systemMessage": "=Tu tarea es analizar una respuesta de un cliente y clasificarla exclusivamente en una de estas cuatro categorías:\n\n1. aceptar → El cliente acepta reprogramar la entrega del producto o responde afirmativamente. También incluye si el cliente realiza **cualquier consulta relacionada con el medicamento**, como:\n   - cómo le ayuda\n   - cuál es la dosis\n   - beneficios\n   - contraindicaciones\n   - efectos\n   - si es adecuado para su caso\n\n   Este tipo de preguntas **NO indican nueva venta**, sino que forman parte del proceso de aceptación o validación previa a la entrega.\n\n2. queja → El cliente expresa una queja o molestia, por ejemplo sobre el repartidor o algún inconveniente con la entrega.\n\n3. rechazo → El cliente indica que ya no desea el producto o rechaza continuar con la compra.\n\n\n⚠️ IMPORTANTE:\n- Si el cliente pregunta cosas como “¿ese medicamento sí me va a ayudar?”, “para qué sirve”, “tiene efectos secundarios”, etc., clasifícalo como **aceptar**.\n- Solo responde con una de las siguientes palabras exactas, todo en minúsculas, sin signos ni emojis:\n\naceptar \nqueja \nrechazo\n\n\n❌ No devuelvas frases, explicaciones ni emojis.\n\n---\n\n### ✅ Ejemplos:\n\n- Cliente: “Sí porfa, mándemelo mañana si puede” → aceptar \n- Cliente: “Yo estaba esperando pero el repartidor no llegó” → queja  \n- Cliente: “Ya no lo quiero” → rechazo \n- Cliente: “¿Y ese medicamento me va a ayudar?” → aceptar\n- Cliente: “¿Tiene efectos secundarios?” → aceptar  \n- Cliente: “Yo no estaba ese día” → queja\n\n\n⚠️ FORMATO DE SALIDA:\n- Devuelve ÚNICAMENTE la palabra exacta: aceptar, queja o rechazo.\n- SIN mayúsculas, SIN asteriscos, SIN negritas, SIN comillas, SIN signos adicionales.\n- No devuelvas nada más aparte de la palabra.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -3152,
+        2208
+      ],
+      "id": "4ef2c450-7785-43f0-afa8-4ce990bf6159",
+      "name": "DETECTAR INTENCION",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -1600,
+        2384
+      ],
+      "id": "bfe80ef0-9c1a-4cee-9cd4-5e6bc706c4ad",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "pDno7JBab3nVoLVV",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('INTENCION_TEXT').item.json.mensaje_cliente }}",
+        "options": {
+          "systemMessage": "=Eres un asistente profesional, empático y cordial de la farmacia Farmafamilia. Atiendes a clientes que presentan inconformidades con su entrega.\n\nObjetivo:\nTranquilizar al cliente, validar su molestia, mantener una actitud amable y confiable, y conducirlo nuevamente al proceso de reprogramación.\n\nInstrucciones:\n\nSi el cliente expresa molestias sobre el repartidor o el servicio de encomienda (por ejemplo, “no llegó”, “no me llamaron”), responde con comprensión:\n\nEjemplo: “Lamentamos mucho lo ocurrido 😔, comprendemos su molestia. Estamos acá para asegurarnos de que reciba su tratamiento sin inconvenientes. ¿Le pareceria bien reprogramar su pedido?” \n\nSi el cliente dice que no pudo estar o que tuvo un imprevisto (trabajo, reunión, etc.):\n\nEjemplo: “¡No se preocupe! Entendemos que surgen imprevistos. Dígame, ¿Le pareceria bien reprogramar su pedido? Con gusto le damos nuevas opciones 📦😊”\n\nSiempre debes:\n\nSer muy cortés y profesional.\n\nFinalizar con una pregunta abierta para continuar la conversación.\n\nUsar un emoji empático o cálido, según el caso.\n\nUsa la herramienta HTTP tool cuando se mencione un problema con la entrega.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -1552,
+        2224
+      ],
+      "id": "0f208375-2b18-4e2c-aeba-486c60f27178",
+      "name": "AI Agent quejas"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -5856,
+        2848
+      ],
+      "id": "0a73fc53-3cc7-4e2c-a17a-ac2793f93164",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "pDno7JBab3nVoLVV",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.mensaje_cliente }}",
+        "options": {
+          "systemMessage": "=Eres un asistente profesional de Farmafamilia. Si el cliente no desea reprogramar la entrega de su medicamento o rechaza la compra, simplemente responde de forma breve y cordial. No intentes insistir ni hacer preguntas adicionales. Tu objetivo es cerrar la conversación de manera amable y respetuosa. Usa un tono educado y empático. Finaliza con un deseo positivo.\n\nejemplo\ncliente: No estoy intereada yo les aviso\ntu dile: Comprendo en todo caso nosotros quedamos al pendiente por cualquier duda o consulta, para cuando desee adquirirlo, que tenga buen dia 🤗 \n\nIMPOPRTANTE damelo en formato texto "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -5856,
+        2704
+      ],
+      "id": "6c6ba606-8020-4c2f-84ad-e463e854f30c",
+      "name": "AI Agent rechazo"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d7efdc67-eb9a-4689-a2d3-a4fae76783f5",
+              "name": "Phone",
+              "value": "={{ $('Webhook').item.json.body.data.key.remoteJid }}",
+              "type": "string"
+            },
+            {
+              "id": "539b9454-ccb0-4c2f-b3d2-654acc98c4a9",
+              "name": "respuesta",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -5488,
+        2688
+      ],
+      "id": "f81ebeff-0020-4bc1-8438-f46400433509",
+      "name": "set"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const rawNumber = $json[\"Phone\"];\n\n// Extraer solo los números (quita todo lo que no sea dígito)\nlet cleanNumber = rawNumber.toString().replace(/\\D/g, \"\");\n\n// Devuelve los mismos datos más el número limpio sin +\nreturn {\n  ...$json,\n  phone_formatted: cleanNumber\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -5248,
+        2688
+      ],
+      "id": "75c54dae-8a0a-401e-a104-6e6f7b82cf9c",
+      "name": "Obtener numero"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f7857f35-cfbd-4fb7-9215-708776e7af08",
+              "name": "mensaje_cliente",
+              "value": "={{ $json.respuesta }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -4544,
+        3040
+      ],
+      "id": "f3dc6260-bfb4-4fdc-b3ca-2f474c2a2ba3",
+      "name": "Mensaje limpio"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d7efdc67-eb9a-4689-a2d3-a4fae76783f5",
+              "name": "Phone",
+              "value": "={{ $('numero').item.json.body.data.key.remoteJid }}",
+              "type": "string"
+            },
+            {
+              "id": "539b9454-ccb0-4c2f-b3d2-654acc98c4a9",
+              "name": "respuesta",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1120,
+        2224
+      ],
+      "id": "91684dc9-bd13-4d15-aaee-34a1cf567f50",
+      "name": "set1"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const rawNumber = $json[\"Phone\"];\n\n// Extraer solo los números (quita todo lo que no sea dígito)\nlet cleanNumber = rawNumber.toString().replace(/\\D/g, \"\");\n\n// Devuelve los mismos datos más el número limpio sin +\nreturn {\n  ...$json,\n  phone_formatted: cleanNumber\n};\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -832,
+        2224
+      ],
+      "id": "d29727e8-2f33-40b0-86c5-4deb4860d772",
+      "name": "Obtener numero1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f7857f35-cfbd-4fb7-9215-708776e7af08",
+              "name": "mensaje_cliente",
+              "value": "={{ $json.respuesta }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -528,
+        2224
+      ],
+      "id": "4af6a6d8-d34c-472d-aa1a-f8de5a1e40ef",
+      "name": "Mensaje limpio1"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('numero').item.json.session_id }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        -1456,
+        2432
+      ],
+      "id": "3e7b91ba-e294-4cb8-9e99-8dd730816cbf",
+      "name": "Postgres Chat Memory1",
+      "credentials": {
+        "postgres": {
+          "id": "ydkQIVhFsjVvxFA0",
+          "name": "Postgres nueva"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('numero').item.json.session_id }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        -5712,
+        3008
+      ],
+      "id": "203e402a-3d72-45da-a5cf-65f214959da3",
+      "name": "Postgres Chat Memory2",
+      "credentials": {
+        "postgres": {
+          "id": "ydkQIVhFsjVvxFA0",
+          "name": "Postgres nueva"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('INTENCION_TEXT').item.json.mensaje_cliente }}",
+        "options": {
+          "systemMessage": "=Eres un asistente profesional que informa entregas de encomienda en El Salvador. El cliente necesita conocer las próximas 3 fechas disponibles para su zona. Utiliza el siguiente formato exacto para mostrarle las nuevas opciones:  Ejemplo del formato de salida requerido: En todo caso le parecería recibir la próxima semana en Atiquizaya, tenemos disponible:   \n📌 domingo 21 de abril de 2024    Atiquizaya, afuera del parqueo de Pizza Hut 12:40 pm a 1:00 pm     \n📌 lunes 22 de abril de 2024    Atiquizaya, afuera del parqueo de Pizza Hut 1:00 pm a 1:15 pm    \n📌 martes 23 de abril de 2024    Atiquizaya, afuera del parqueo de Pizza Hut 1:00 pm a 1:15 pm      ¿Qué día le quedaría accesible recibir?  🔁 Reglas que debes seguir: - Reemplaza “Atiquizaya” por el nombre de la zona proporcionada en el contenido. - Usa exactamente el icono📌. - Respeta el espacio de línea entre fecha, lugar y hora. - Muestra 3 fechas en orden cronológico. - No agregues saludos ni explicaciones. - Finaliza con la pregunta: “¿Qué día le quedaría accesible recibir?”   IMPORTANTE: - Sigue las indicaciones proporcionadas Contenido a formatear: {{ $json.text }}\n\n\n✳️ REGLAS EN LA CONVERSACIÓN\nToma en cuenta lo siguiente:\n\nSiempre debes cerrar tu respuesta con una pregunta.\nEsto mantiene la conversación fluida y permite avanzar a la siguiente etapa.\n\nSi el cliente hace una pregunta o expresa una duda, tu prioridad es responder con claridad.\nLuego, retomas la conversación para continuar con la reprogramación del pedido.\n\nCuando el cliente aún no ha confirmado una nueva fecha, debes mostrarle las fechas disponibles que vienen en {{ $json.text }}.\n\nCuando el cliente ya eligió la fecha, y tú tienes todos los datos del pedido anterior, debes evitar pedir otra vez datos como nombre, dirección o producto.\n\nEn su lugar, responde de forma amable y profesional con el resumen completo del nuevo registro:\n\nRegistro de compra 🛍️  \nCliente:{{ $json['nombre '] }}   \nTeléfono: {{ $json['telefono '] }}\nDepartamento:{{ $json.departamento }}\nMedicamento: {{ $json.cantidad }} {{ $json[\"producto\"] }}  \nFecha de entrega: {{ $json.fecha_elegida }} \nMunicipío: {{ $json['municipio '] }}\nUbicación de entrega:{{ $json.ubicacion_entrega }} \nTotal a pagar: ${{ $json[\"precio\"] }}  \n\n\nasegúrate de usar la memoria para mantener coherencia en la conversación actual \n\n🧠 Regla de consulta de producto:  \nSi el cliente pregunta:  \n“¿Para qué sirve?”  \n“¿En qué me va a ayudar?”  \n“¿Cuál es la dosis?”  \n“¿Tiene contraindicaciones?”  \nO menciona algo como “tengo presión alta”, “soy diabético”, etc.\n\nIMPORTANTE→ Debes consultar la herramienta interna HTTP (ya integrada) para obtener solo la información del medicamento mencionado por el cliente.\nUsa como parámetro el nombre exacto ya confirmado {{ $json.producto }}: .\nNo extraigas la información de todos los medicamentos, solo del que corresponde al pedido actual.\n\nUsa como parámetro el nombre exacto ya confirmado: {{ $json.product || $json[\"producto\"] }}.\n\n\nDbes responder con información clara, segura y sin hacer interpretaciones médicas.\n\n🧠 Ejemplo más conversacional y personalizado:  \nSí claro 😊. Fitogastric le va a ayudar bastante si ha estado sintiendo acidez, pesadez o ardor en el estómago.  \nEste producto desinflama el sistema digestivo, cicatriza heridas internas y estabiliza su estómago incluso si come algo pesado. ¿Le parece bien reprogramar su pedido para iniciar a disfrutar sus beneficios? \n\nNUNCA inventes esa info tú mismo.  \nResponde con los datos reales de la tool, de forma clara y cordial.  \nDespués de eso, puedes continuar con la reprogramación o el cierre.\n\n🧠 SI el cliente menciona que ya recibió el producto (ej: “ya lo tengo”, “sí me llegó”, “ya lo recibí”):  \n- Responde amablemente, confirmando la recepción y agradeciendo su mensaje.  \n- NO ofrecer nuevas fechas ni puntos de entrega.  \n- NO enviar más mensajes si luego el cliente responde con frases de cierre.\n\n🛑 DETECCIÓN DE CIERRE DE CONVERSACIÓN:  \nSi el mensaje más reciente del cliente es una expresión de cierre como:  \n- “gracias”  \n- “muchas gracias”  \n- “ok”  \n- “👍”  \n- “listo”  \n- “todo bien”  \n- “perfecto”  \n- “recibido”  \n- “de acuerdo”\nY no hay ninguna solicitud nueva o pregunta en la memoria Postgres de su {{ $('numero').item.json.session_id }}. , entonces:\nConsidera la conversación finalizada.  \n\n##SIEMPRE TIENES QUE SER EMPATICO, AMABLE Y CORDIAL EN CADA RESPUESTA, UTLIZA EMOGIS DE SER NECESARIO Y SIEMPRE TERMINA CON UNA PREGUNTA, HASTA QUE LOGRES REPROGRAMARLO \nejemplo \nSí, Fitodol es un medicamento diseñado para aliviar el dolor articular causado por condiciones como artritis, artrosis, osteoartritis, gota y tendinitis. Ayuda a calmar el dolor, desinflamar las articulaciones, mejorar la movilidad y reducir la rigidez 😄. ¿Le parece bien reprogramar su pedido para iniciar a disfrutar sus beneficios? 📦\n\nPROHIBIDO:\n- Enviar más de un mensaje por turno."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1696,
+        2240
+      ],
+      "id": "e3e5a91f-9e70-4956-8f6d-38963aa59a07",
+      "name": "AI Agent Reprogramados"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1648,
+        2400
+      ],
+      "id": "5253b785-3b67-4ace-91d0-83f1250ed173",
+      "name": "OpenAI Chat Model5",
+      "credentials": {
+        "openAiApi": {
+          "id": "pDno7JBab3nVoLVV",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d7efdc67-eb9a-4689-a2d3-a4fae76783f5",
+              "name": "Phone",
+              "value": "={{ $('obtener from').first().json.telefono_cliente }}\n",
+              "type": "string"
+            },
+            {
+              "id": "539b9454-ccb0-4c2f-b3d2-654acc98c4a9",
+              "name": "respuesta",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2192,
+        2240
+      ],
+      "id": "85ec40a0-7f5f-4611-bc93-6153ba1eb97d",
+      "name": "set2"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const rawNumber = $json[\"Phone\"];\n\n// Extraer solo los números (quita todo lo que no sea dígito)\nlet cleanNumber = rawNumber.toString().replace(/\\D/g, \"\");\n\n// Devuelve los mismos datos más el número limpio sin +\nreturn {\n  ...$json,\n  phone_formatted: cleanNumber\n};\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2448,
+        2240
+      ],
+      "id": "746b512b-aaa4-46b5-aaff-0230adbcc25a",
+      "name": "Obtener numero2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f7857f35-cfbd-4fb7-9215-708776e7af08",
+              "name": "mensaje_cliente",
+              "value": "={{ $json.respuesta }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2720,
+        2240
+      ],
+      "id": "9b6e189f-a2fe-4f43-9503-6524d77437b6",
+      "name": "Mensaje limpio2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Acceder a remoteJid desde la ruta real\nconst remoteJid = $('numero').first().json.body.data.key.remoteJid;\n\n// Limpiar el número (eliminar @s.whatsapp.net y posibles sufijos)\nconst cleanNumber = remoteJid.split(\"@\")[0].split(\":\")[0];\n\n// Devolver el número limpio\nreturn {\n  json: {\n    telefono_cliente: cleanNumber\n  }\n};\n\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1744,
+        1424
+      ],
+      "id": "efa7858b-22b1-4926-b7fd-e2fae71836ae",
+      "name": "obtener from"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst municipalities = items.map((item) => item.json.municipality);\nreturn { municipalities };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -864,
+        1424
+      ],
+      "id": "a5663165-812c-4352-ac05-0e7ad4fd3604",
+      "name": "obtener municipio"
+    },
+    {
+      "parameters": {
+        "content": "## BLOQUE ENCOMINEDAS",
+        "height": 260,
+        "width": 860,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        384,
+        2096
+      ],
+      "typeVersion": 1,
+      "id": "3f000d31-bedc-4a47-8820-89fd5e058f25",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ✅ Zona actual: ahora viene del nodo \"obtener municipio\"\nconst zonaActual = $('obtener municipio').first().json.municipalities[0] ;\n\n// ⚠️ Validación: si no vino ningún municipio, mostramos error controlado\nif (!zonaActual) {\n  return [{\n    json: {\n      error: \"No se detectó ningún municipio en 'obtener municipio'.\"\n    }\n  }];\n}\n\n// 🔤 Normalizar texto\nconst normalizar = texto =>\n  (texto || \"\").toLowerCase().normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").trim();\n\nconst zonaNormalizada = normalizar(zonaActual);\n\n// 📋 Todos los registros de entrada\nconst registros = items.map(i => i.json);\n\n// 🔍 Filtrar por coincidencia de zona al inicio del destino\nconst filtrados = registros.filter(r => {\n  const destinoNormalizado = normalizar(r.destino);\n  return destinoNormalizado.startsWith(zonaNormalizada);\n});\n\n// 🔁 Resultado: si no hay coincidencias exactas, retornar todos los destinos que contengan la zona\nconst resultadoFinal = (filtrados.length > 0 ? filtrados : registros.filter(r =>\n  normalizar(r.destino).includes(zonaNormalizada)\n));\n\n// ✅ Salida estructurada\nreturn resultadoFinal.map(r => ({\n  json: {\n    dia: r.dia,\n    destino: r.destino,\n    zona_detectada_anterior: zonaActual\n  }\n}));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        848,
+        2256
+      ],
+      "id": "5c0f7d87-fd6e-4bc6-a10f-cdafbfa2408b",
+      "name": "obtiene los destinos solicitados"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1C-7WU-RXRcru8H63QzIegnBSIUIAbBKMvZqxLSfopbw",
+          "mode": "list",
+          "cachedResultName": "REGISTRO 45 - NOHEMY WEB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C-7WU-RXRcru8H63QzIegnBSIUIAbBKMvZqxLSfopbw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 513599299,
+          "mode": "list",
+          "cachedResultName": "Horarios",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C-7WU-RXRcru8H63QzIegnBSIUIAbBKMvZqxLSfopbw/edit#gid=513599299"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        416,
+        2256
+      ],
+      "id": "1e4f33e2-dc17-4784-9359-9aedb4a24e93",
+      "name": "REGISTRO DE DIAS Y DESTINOS",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "P3Eb0Ch6b2KbJTDO",
+          "name": "CORREO FARMA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ✅ Traer zona desde el nodo anterior \"obtener municipio\"\nconst zona = $json.municipio || \"\";\n\n// ✅ Obtener todas las filas que vienen del Google Sheet\nconst rows = $input.all().map(item => item.json);\n\n// 🔤 Función para limpiar acentos y espacios\nfunction normalizar(texto) {\n  return texto?.toLowerCase().normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").trim();\n}\n\nconst zonaNormalizada = normalizar(zona);\n\n// 🔍 Filtrar registros cuyo DESTINO comience con el nombre del municipio\nconst filtrados = rows.filter(r => {\n  const destino = normalizar(r.DESTINO || \"\");\n  return destino.startsWith(zonaNormalizada);\n});\n\n// 🧾 Resultado limpio\nconst resultados = filtrados.map(r => ({\n  dia: r.DIA || \"\",\n  destino: r.DESTINO || \"\"\n}));\n\n// ✅ Devolver como array de items válidos\nreturn resultados.map(r => ({ json: r }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        2256
+      ],
+      "id": "7c789694-1630-497a-b0de-b207a0ba32db",
+      "name": "OBTENERLOS"
+    },
+    {
+      "parameters": {
+        "content": "## OBTENER FROM CLIENTE",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1776,
+        1296
+      ],
+      "typeVersion": 1,
+      "id": "8cd0f8d7-a361-40e4-a969-2e2f843c6fee",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "## CONSULTA GENERAL",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1504,
+        1296
+      ],
+      "typeVersion": 1,
+      "id": "ca82ca55-3d14-4b3c-99cd-1768a2bc871c",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "## OBTENER MUNICIPIO",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -896,
+        1296
+      ],
+      "typeVersion": 1,
+      "id": "3a3e7fe3-cf76-4144-b112-b96c47ba60ba",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 🏙️ Municipio detectado desde array\nconst municipio = $json.municipalities?.[0] || \"\";\n\n// 📋 Lista de zonas delivery (ya en minúsculas y sin tildes)\nconst deliveryZonas = [\n  \"sonsonate centro\", \"san miguel centro\", \"san vicente centro\", \"santa ana centro\", \"usulutan centro\",\n  \"nuevo cuscatlan\", \"san salvador centro\", \"mejicanos\", \"san marcos\", \"cuscatancingo\",\n  \"soyapango\", \"ilopango\", \"antiguo cuscatlan\", \"apopa\", \"santa tecla\", \"san martin\",\n  \"planes de renderos\", \"lourdes colon\", \"ciudad merliot\"\n];\n\n// 🔤 Normalizador: elimina tildes, pasa a minúsculas y limpia espacios\nfunction normalizar(texto) {\n  return texto\n    .toLowerCase()\n    .normalize(\"NFD\")\n    .replace(/[\\u0300-\\u036f]/g, \"\") // elimina tildes\n    .trim();\n}\n\n// 🧠 Comparación segura\nconst municipioNormalizado = normalizar(municipio);\nconst esDelivery = deliveryZonas.includes(municipioNormalizado);\n\n// ✅ Resultado\nreturn [{\n  json: {\n    tipo_entrega: esDelivery ? \"delivery\" : \"encomienda\"\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -576,
+        1424
+      ],
+      "id": "f8388dea-f736-4824-864f-0d6be753cc9c",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.tipo_entrega }}",
+                    "rightValue": "=delivery",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "94237940-e791-412a-a78b-40a2bb8be522"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "R Y D"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "3050d6c3-7bc6-4e1a-8e8c-3159f972bb84",
+                    "leftValue": "={{ $json.tipo_entrega }}",
+                    "rightValue": "encomienda",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "encomienda"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -352,
+        1424
+      ],
+      "id": "4e8570b7-8e65-433c-8796-7c0feb33c159",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d7efdc67-eb9a-4689-a2d3-a4fae76783f5",
+              "name": "Phone",
+              "value": "={{ $('obtener from').first().json.telefono_cliente }}\n",
+              "type": "string"
+            },
+            {
+              "id": "539b9454-ccb0-4c2f-b3d2-654acc98c4a9",
+              "name": "respuesta",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1776,
+        544
+      ],
+      "id": "f501e27d-4cde-4e2f-8474-60a85d5e7feb",
+      "name": "set4"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const rawNumber = $json[\"Phone\"];\n\n// Extraer solo los números (quita todo lo que no sea dígito)\nlet cleanNumber = rawNumber.toString().replace(/\\D/g, \"\");\n\n// Devuelve los mismos datos más el número limpio sin +\nreturn {\n  ...$json,\n  phone_formatted: cleanNumber\n};\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        544
+      ],
+      "id": "79cebadb-e492-425a-bb71-998076964a20",
+      "name": "Obtener numero4"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f7857f35-cfbd-4fb7-9215-708776e7af08",
+              "name": "mensaje_cliente",
+              "value": "={{ $json.respuesta }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2352,
+        544
+      ],
+      "id": "52ec0dd7-7631-496c-a45c-d07f5f319b63",
+      "name": "Mensaje limpio4"
+    },
+    {
+      "parameters": {
+        "content": "## BLOQUE DELIVERY Y REPARTIDOR",
+        "height": 340,
+        "width": 1740,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        624,
+        432
+      ],
+      "typeVersion": 1,
+      "id": "856abbf0-2343-4060-9090-249a5cefbd66",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "## FROM Y RESPUESTA",
+        "height": 300,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1696,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "d874e765-0992-49ad-9633-5037bda6f0ae",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const raw = $input.first().json.key.remoteJid || \"\";\n  const digits = raw.replace(/\\D/g, '');     // ej: \"50364274393@s.whatsapp.net\"\n\n  // Quitar solo si comienza con 503\n  const cleanNumber = digits.startsWith(\"503\") ? digits.slice(3) : digits;\n\n  return {\n    json: {\n      phone: cleanNumber                     // ej: \"64274393\"\n    }\n  };\n});\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -4032,
+        3040
+      ],
+      "id": "363e2cb2-3cea-427f-b2ca-66bd24a5f3f0",
+      "name": "obtener numero"
+    },
+    {
+      "parameters": {
+        "content": "## HORARIOS REPARTIDOR Y D",
+        "height": 340,
+        "width": 300,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1312,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "58163eb6-1d65-4ad6-bd76-18cbccc2a438",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "## LIMPIAR NUMERO",
+        "height": 300,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2000,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "a09fd131-1f00-493b-b5a0-d0ec9b1b38e9",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "content": "## PREPARAR RESPUESTA",
+        "height": 300,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2272,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "58b2fcae-df32-4f9c-90c7-20ffea64f6c4",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "content": "## ENVIAR RESPUESTA",
+        "height": 300,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2560,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "abb3943d-ab35-41e5-a387-63b073bcfd02",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "jsCode": "const phone = $input.first().json.phone\nconst columns = [\n  \"id\",\n  \"entry_time\",\n  \"exit_time\",\n  \"client_name\",\n  \"delivery_date\",\n  \"department\",\n  \"municipality\",\n  \"product\",\n  \"sale_person\",\n  \"quantity\",\n  \"price\",\n  \"delivery_person\",\n  \"delivery_point\",\n  \"medio_digital\",\n  \"comment\",\n  \"created_at\",\n  \"phone\",\n  \"user_role\",\n  \"delivery_status\"\n].join(\", \");\n\nconst sql = `\n  SELECT ${columns}\n  FROM wp_custom_form_data\n  WHERE phone LIKE '%${phone}'\n`;\n\nreturn [\n  {\n    json: {\n      query: sql.trim(),\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3824,
+        3040
+      ],
+      "id": "290cd02e-0609-4552-9d29-e4cb92a1816b",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $json.query }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -3600,
+        3040
+      ],
+      "id": "d7a70b43-22d8-4926-b3b5-48f2138758d0",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "mySql": {
+          "id": "cgEpuQXtnXe3sffK",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## ENVIAR MENSAJE\n",
+        "height": 260,
+        "width": 200,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -4352,
+        2960
+      ],
+      "typeVersion": 1,
+      "id": "97920f41-4eaa-4284-a9fc-1827bb94566b",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## CODE NUMERO\n",
+        "height": 260,
+        "width": 200,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -4080,
+        2960
+      ],
+      "typeVersion": 1,
+      "id": "6a3c2a0c-5bf2-4e38-95a2-183c041b3167",
+      "name": "Sticky Note18"
+    },
+    {
+      "parameters": {
+        "content": "## CONS GENERAL\n\n",
+        "height": 260,
+        "width": 200,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -3856,
+        2960
+      ],
+      "typeVersion": 1,
+      "id": "56db14d0-9819-4d86-93fd-913cc5ff026c",
+      "name": "Sticky Note19"
+    },
+    {
+      "parameters": {
+        "content": "## BASE\n\n",
+        "height": 260,
+        "width": 200,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -3632,
+        2960
+      ],
+      "typeVersion": 1,
+      "id": "89d297cf-9f36-42cd-b25d-a4b98afed770",
+      "name": "Sticky Note20"
+    },
+    {
+      "parameters": {
+        "content": "## FORMATEAR FECHA",
+        "height": 300,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        656,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "4988ff6d-411a-4136-9014-c3a8ed4f9ea5",
+      "name": "Sticky Note21"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\n// Ajuste de zona horaria El Salvador (UTC-6)\nnow.setUTCHours(now.getUTCHours() - 6);\n\n// Obtener fecha legible\nconst diasSemana = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];\nconst meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];\n\nconst dia = now.getDate();\nconst mes = meses[now.getMonth()];\nconst año = now.getFullYear();\nconst diaSemana = diasSemana[now.getDay()];\nconst hora = now.getHours();\nconst minutos = now.getMinutes();\n\n// Construcción de objetos de utilidad\nreturn [\n  {\n    json: {\n      fecha_actual_legible: `${diaSemana} ${dia} de ${mes} de ${año}`,\n      hora_actual: `${hora}:${minutos.toString().padStart(2, '0')}`,\n      timestamp_actual: now.toISOString(),\n      hora_numérica: hora + (minutos / 60),\n      dia_semana: diaSemana,\n      dia: dia,\n      mes: mes,\n      año: año\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        736,
+        576
+      ],
+      "id": "635e12fe-a397-49eb-b4dd-8ddd9efd40e2",
+      "name": "fecha_actual",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $json.query }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -1136,
+        1424
+      ],
+      "id": "427a4b12-0ff1-481d-a072-8b836364ee3c",
+      "name": "Execute a SQL query1",
+      "credentials": {
+        "mySql": {
+          "id": "cgEpuQXtnXe3sffK",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## BASE DE REGISTROS ",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1184,
+        1312
+      ],
+      "typeVersion": 1,
+      "id": "45fd5d22-f6b5-445f-a501-6cc4d65ef16f",
+      "name": "Sticky Note29"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -3312,
+        3088
+      ],
+      "id": "c3ae1cfe-b6c5-4327-908a-1c1752bea78e",
+      "name": "OpenAI Chat Model3",
+      "credentials": {
+        "openAiApi": {
+          "id": "pDno7JBab3nVoLVV",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## INTENCION Y BODY",
+        "height": 260,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2640,
+        2128
+      ],
+      "typeVersion": 1,
+      "id": "7d069454-9cdc-4270-91b6-45c3673f2416",
+      "name": "Sticky Note30"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -2864,
+        3008
+      ],
+      "id": "83421850-34a2-4e84-9504-f2eecdc44410",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.mensaje_cliente }}",
+        "options": {
+          "systemMessage": "=ers un experto en crear comentarios a base al mensaje del cliente  {{ $json.mensaje_cliente }} \npor ejemplo: \ncliente (no gracias)\ncomentario: cliente comenta que no desea reprogramar \n\nel comentario debe ser conforme al mensaje del cliente "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -3312,
+        2928
+      ],
+      "id": "65adae95-0286-48fd-848d-d73570d39170",
+      "name": "crear comentario"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const item = { ...$json };\n\n// Limpiar el texto si comienza con \"Comentario:\"\nconst raw = item.output || \"\";\nconst limpio = raw.replace(/^Comentario:\\s*/i, \"\");\n\n// Rellenar 'comment' ya limpio\nitem.comment = limpio;\n\n// Eliminar 'output'\ndelete item.output;\n\nreturn {\n  json: item\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2544,
+        3008
+      ],
+      "id": "98396bfe-bac8-4eab-ada3-9dce077c4cbd",
+      "name": "llenar comment"
+    },
+    {
+      "parameters": {
+        "content": "## RESPUESTA PARA LAS QUEJAS",
+        "height": 340,
+        "width": 380,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1616,
+        2144
+      ],
+      "typeVersion": 1,
+      "id": "ad486b10-d6cf-426c-98f7-20b0deb6ff78",
+      "name": "Sticky Note32"
+    },
+    {
+      "parameters": {
+        "content": "## DETECTAR LOG",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -640,
+        1296
+      ],
+      "typeVersion": 1,
+      "id": "4fca6f34-1527-49be-bb3b-e303d6a2a844",
+      "name": "Sticky Note33"
+    },
+    {
+      "parameters": {
+        "content": "## OBTENER DATO",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -400,
+        1296
+      ],
+      "typeVersion": 1,
+      "id": "326a0599-ba85-4d82-969f-7dcf55755bbb",
+      "name": "Sticky Note34"
+    },
+    {
+      "parameters": {
+        "content": "## OB. RESPUESTA",
+        "height": 240,
+        "width": 220,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1168,
+        2160
+      ],
+      "typeVersion": 1,
+      "id": "65f9ec22-8718-48fe-9150-319bb88cf52a",
+      "name": "Sticky Note35"
+    },
+    {
+      "parameters": {
+        "content": "## OB. NUMERO",
+        "height": 240,
+        "width": 220,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -880,
+        2160
+      ],
+      "typeVersion": 1,
+      "id": "fdbd8fdc-1e2f-43c3-9f60-635d7af46c55",
+      "name": "Sticky Note36"
+    },
+    {
+      "parameters": {
+        "content": "## LIMPIAR TEXTO",
+        "height": 240,
+        "width": 508,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -880,
+        2160
+      ],
+      "typeVersion": 1,
+      "id": "30edbc7e-ce79-492e-88ca-d0cf6b2c4b89",
+      "name": "Sticky Note37"
+    },
+    {
+      "parameters": {
+        "content": "## ENVIAR TXT.",
+        "height": 240,
+        "width": 220,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        80,
+        2128
+      ],
+      "typeVersion": 1,
+      "id": "d523bc98-e30e-4e19-a136-14276942d338",
+      "name": "Sticky Note38"
+    },
+    {
+      "parameters": {
+        "content": "## DETEC. INTENCION",
+        "height": 380,
+        "width": 340,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -3184,
+        2160
+      ],
+      "typeVersion": 1,
+      "id": "27562758-0e38-4c5a-9330-9ebac91c75a4",
+      "name": "Sticky Note39"
+    },
+    {
+      "parameters": {
+        "content": "## DETEC. RECHAZO",
+        "height": 300,
+        "width": 300,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -5888,
+        2640
+      ],
+      "typeVersion": 1,
+      "id": "2352491a-fe09-4a23-836d-dcd63a3e7e2c",
+      "name": "Sticky Note41"
+    },
+    {
+      "parameters": {
+        "content": "## RL. MENSAJE",
+        "height": 220,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -5536,
+        2640
+      ],
+      "typeVersion": 1,
+      "id": "6830ed98-c8b7-498b-8132-3ca2a4a55ff9",
+      "name": "Sticky Note42"
+    },
+    {
+      "parameters": {
+        "content": "## OB. NUMERO",
+        "height": 220,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -5296,
+        2640
+      ],
+      "typeVersion": 1,
+      "id": "4a5fb70e-ed4e-4d68-b07e-1ee1d852b806",
+      "name": "Sticky Note43"
+    },
+    {
+      "parameters": {
+        "content": "## L. MENSAJE",
+        "height": 252,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -4592,
+        2960
+      ],
+      "typeVersion": 1,
+      "id": "9fa7bd16-2489-4e7f-ae64-abee00ee62bc",
+      "name": "Sticky Note44"
+    },
+    {
+      "parameters": {
+        "content": "## COMMENT BASE",
+        "height": 300,
+        "width": 300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -3328,
+        2880
+      ],
+      "typeVersion": 1,
+      "id": "2093d5bc-0bac-4dd9-a3d1-b622269899c0",
+      "name": "Sticky Note45"
+    },
+    {
+      "parameters": {
+        "content": "## OUTPUT/COMMENT",
+        "height": 280,
+        "width": 300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2960,
+        2928
+      ],
+      "typeVersion": 1,
+      "id": "34ce9aa2-fd2f-47e2-86ff-b6baee9130d7",
+      "name": "Sticky Note47"
+    },
+    {
+      "parameters": {
+        "content": "## RELLENAR COMMENT",
+        "height": 280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2624,
+        2928
+      ],
+      "typeVersion": 1,
+      "id": "8b15d04b-82e9-4bee-9d1f-b99c21829ad0",
+      "name": "Sticky Note48"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "wp_custom_form_data",
+          "mode": "list",
+          "cachedResultName": "wp_custom_form_data"
+        },
+        "columnToMatchOn": "id",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -2000,
+        3008
+      ],
+      "id": "de486d7d-af19-438d-abf7-89e99d2d7996",
+      "name": "Insert or update rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "cgEpuQXtnXe3sffK",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "696cad6d-8c33-4b21-84b3-42d612dfce18",
+              "name": "id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "18f9f871-fdae-4ecc-be1f-65cdda3d0560",
+              "name": "comment",
+              "value": "={{ $json.comment }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -2288,
+        3008
+      ],
+      "id": "e5ac7d3b-ba65-4d22-bf47-c0c2119702e0",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "content": "## id/ comment",
+        "height": 280,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2320,
+        2928
+      ],
+      "typeVersion": 1,
+      "id": "acc9cd39-4101-4e4f-98e5-1cb22d2c3cce",
+      "name": "Sticky Note49"
+    },
+    {
+      "parameters": {
+        "content": "## AGENTE VENTA",
+        "height": 360,
+        "width": 400,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1616,
+        2160
+      ],
+      "typeVersion": 1,
+      "id": "fbdb5523-6034-406c-b1f2-64cb7fa85d1c",
+      "name": "Sticky Note56"
+    },
+    {
+      "parameters": {
+        "content": "## CREAR R.",
+        "height": 260,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2128,
+        2176
+      ],
+      "typeVersion": 1,
+      "id": "ced551a6-9e77-45ef-b5e2-bf82eb31c71b",
+      "name": "Sticky Note57"
+    },
+    {
+      "parameters": {
+        "content": "## OB. FROM",
+        "height": 260,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2400,
+        2176
+      ],
+      "typeVersion": 1,
+      "id": "4a20d23d-2fea-435d-bbf3-039c57156eef",
+      "name": "Sticky Note58"
+    },
+    {
+      "parameters": {
+        "content": "## RESPUESTA ",
+        "height": 260,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2656,
+        2176
+      ],
+      "typeVersion": 1,
+      "id": "637f2454-864a-4b35-a357-cea1133d0aaf",
+      "name": "Sticky Note59"
+    },
+    {
+      "parameters": {
+        "content": "## ENVIAR",
+        "height": 260,
+        "width": 220,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3392,
+        1936
+      ],
+      "typeVersion": 1,
+      "id": "7cdf995b-d163-4821-ae39-359c1b4c704e",
+      "name": "Sticky Note60"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "= {{ $('numero').item.json.session_id }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        -3024,
+        2416
+      ],
+      "id": "fdec37e1-f5d1-4ce6-99ca-274f963c5ddc",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "ydkQIVhFsjVvxFA0",
+          "name": "Postgres nueva"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7615dc4f-f9f4-472d-b260-7266915df419",
+              "name": "session_id",
+              "value": "={{ \"user_\" + $json[\"body\"][\"data\"][\"key\"][\"remoteJid\"].replace(\"@s.whatsapp.net\", \"\") }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -4576,
+        1936
+      ],
+      "id": "ac8f0fad-a012-42ea-bfe4-c72af3d102b2",
+      "name": "numero",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const phone = $input.first().json.telefono_cliente;\n\nconst columns = [\n  \"id\",\n  \"entry_time\",\n  \"exit_time\",\n  \"client_name\",\n  \"delivery_date\",\n  \"department\",\n  \"municipality\",\n  \"product\",\n  \"sale_person\",\n  \"quantity\",\n  \"price\",\n  \"delivery_person\",\n  \"delivery_point\",\n  \"medio_digital\",\n  \"comment\",\n  \"created_at\",\n  \"phone\",\n  \"user_role\",\n  \"delivery_status\"\n].join(\", \");\n\nconst sql = `\n  SELECT ${columns}\n  FROM wp_custom_form_data\n  WHERE phone LIKE '%${phone}%'\n  ORDER BY id DESC\n  LIMIT 1\n`;\n\nreturn [\n  {\n    json: {\n      query: sql.trim(),\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1456,
+        1424
+      ],
+      "id": "e9718e11-f406-4a9a-8172-e71b996a511e",
+      "name": "consulta general."
+    },
+    {
+      "parameters": {
+        "content": "## BASE",
+        "height": 280,
+        "width": 200
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -2064,
+        2928
+      ],
+      "typeVersion": 1,
+      "id": "3c5ff307-4afb-4c68-8552-b6c4d5e68b8e",
+      "name": "Sticky Note50"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Devuelve lo que el cliente solicita saber, según el síntoma o nombre del producto mencionado por el cliente.",
+        "url": "https://docs.google.com/document/d/1TeTE54NzG78bBzC5UzOKLSbweCcClKTdLsm_X-qbfnE/edit?usp=sharing",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1936,
+        2432
+      ],
+      "id": "bee44a45-8de7-4ad9-ae2d-b1ac5daaf99a",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 5,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1440,
+        2224
+      ],
+      "id": "f3dc33dc-b0be-4b29-9d5d-8742d2bdfede",
+      "name": "Merge1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const mensaje = $('INTENCION_TEXT').first().json.mensaje_cliente.toLowerCase();\nconst hoy = new Date();\nconst fechasProximas = [];\n\n// Generar los próximos 14 días\nfor (let i = 0; i < 14; i++) {\n  const fecha = new Date(hoy);\n  fecha.setDate(hoy.getDate() + i);\n  fechasProximas.push(fecha);\n}\n\nlet fechaElegida = \"NO DETECTADA\";\n\n// 1. Intentar detectar número de día (ej. 'el 23')\nconst matchDia = mensaje.match(/(?:\\bpara\\s+)?(?:el\\s+)?(\\d{1,2})(?:\\s+de\\s+\\w+)?/);\n\nif (matchDia) {\n  const dia = parseInt(matchDia[1]);\n  const encontrada = fechasProximas.find(f => f.getDate() === dia);\n  \n  if (encontrada) {\n    const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };\n    const fechaFormateada = encontrada.toLocaleDateString('es-ES', opciones);\n    fechaElegida = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);\n  }\n} else {\n  // 2. Buscar día de la semana en el mensaje\n  const diasSemana = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];\n\n  for (const fecha of fechasProximas) {\n    const nombreDia = fecha.toLocaleDateString('es-ES', { weekday: 'long' }).toLowerCase();\n    if (mensaje.includes(nombreDia)) {\n      const opciones = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };\n      const fechaFormateada = fecha.toLocaleDateString('es-ES', opciones);\n      fechaElegida = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);\n      break;\n    }\n  }\n}\n\nreturn [{ json: { fecha_elegida: fechaElegida } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        304,
+        2640
+      ],
+      "id": "9d53fa84-7e57-4c3f-8863-a187e2669dc9",
+      "name": "Detectar Fecha Elegida",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1c2d3066-f9fe-4c29-aea0-a804ac9f1b0c",
+              "name": "fecha_elegida",
+              "value": "={{ $json.fecha_elegida }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        2640
+      ],
+      "id": "a6044701-102c-4e08-9347-807ba441d473",
+      "name": "limpiar fecha"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "370c1246-df4f-4ecc-a6eb-690c4e70ba28",
+              "name": "nombre ",
+              "value": "={{ $json.client_name }}",
+              "type": "string"
+            },
+            {
+              "id": "fdb56c9c-9b33-4797-8acc-827a943276bf",
+              "name": "telefono ",
+              "value": "={{ $json.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "88bf4591-497a-4251-9aa0-eb1939e47762",
+              "name": "producto",
+              "value": "={{ $json.product }}",
+              "type": "string"
+            },
+            {
+              "id": "b553adef-7dee-4ce1-9e8d-04dcdc2bec25",
+              "name": "fecha_entrega",
+              "value": "={{ $json.delivery_date }}",
+              "type": "string"
+            },
+            {
+              "id": "13ff7a19-0165-44a9-9620-6768261ef436",
+              "name": "ubicacion",
+              "value": "={{ $json.delivery_point }}",
+              "type": "string"
+            },
+            {
+              "id": "493e90a7-3e81-49e9-9658-45297a5992db",
+              "name": "precio",
+              "value": "={{ $json.price }}",
+              "type": "string"
+            },
+            {
+              "id": "80f783fa-3db5-4bf9-8091-e0c0cac08582",
+              "name": "cantidad",
+              "value": "={{ $json.quantity }}",
+              "type": "string"
+            },
+            {
+              "id": "1c489406-6936-455e-b379-72dfa1bf4a2c",
+              "name": "municipio ",
+              "value": "={{ $json.municipality }}",
+              "type": "string"
+            },
+            {
+              "id": "1f6d2131-77c9-4158-96b6-ea1cbf934cf3",
+              "name": "departamento",
+              "value": "={{ $json.department }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2224,
+        1824
+      ],
+      "id": "3255163a-b0cc-4199-87e3-92ebde6c7217",
+      "name": "datos para registro"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 🔸 Zona y fechas mostradas\nconst zona = $('obtener municipio').first()?.json?.municipio || \"\";\nconst offset = $('obtener from').first()?.json?.fechas_mostradas || 0;\n\nconst registros = $input.all().map(i => i.json);\n\n// 🔤 Normalizar texto\nconst normalizar = (texto) =>\n  texto?.toLowerCase()\n    .normalize(\"NFD\")\n    .replace(/[\\u0300-\\u036f]/g, \"\")\n    .replace(/[^a-z0-9 ]/g, \"\")\n    .trim() || \"\";\n\nconst zonaNormalizada = normalizar(zona);\n\n// 🔍 Filtrar registros por zona\nconst filtrados = registros.filter(r => {\n  const destinoNormalizado = normalizar(r.destino);\n  return destinoNormalizado.includes(zonaNormalizada);\n});\n\n// 📆 Ciclo de corte\nconst hoy = new Date();\nconst diaHoy = hoy.getDay();\nlet fechaInicio = new Date(hoy);\n\nif (diaHoy >= 3 && diaHoy <= 5) {\n  fechaInicio.setDate(hoy.getDate() + ((6 + 7 - diaHoy) % 7)); // Sábado\n} else {\n  fechaInicio.setDate(hoy.getDate() + ((3 + 7 - diaHoy) % 7)); // Miércoles\n}\n\nconst diasOrden = [\"domingo\", \"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\"];\n\nfunction proximaFecha(diaTexto, desdeFecha, repeticiones = 0) {\n  const indexObjetivo = diasOrden.indexOf(diaTexto.toLowerCase());\n  const base = new Date(desdeFecha);\n  const actual = base.getDay();\n  const diasSumar = ((indexObjetivo - actual + 7) % 7) + repeticiones * 7;\n  base.setDate(base.getDate() + diasSumar);\n  return base;\n}\n\n// 🧠 Generar fechas posibles\nlet resultados = [];\nlet repeticiones = 0;\nwhile (resultados.length < offset + 10) {\n  for (const r of filtrados) {\n    const fecha = proximaFecha(r.dia, fechaInicio, repeticiones);\n    resultados.push({\n      fecha,\n      fechaFormateada: fecha.toLocaleDateString(\"es-SV\", {\n        weekday: \"long\", year: \"numeric\", month: \"long\", day: \"numeric\"\n      }),\n      destino: r.destino\n    });\n  }\n  repeticiones++;\n}\n\n// 🔁 Aplicar offset y limitar a 3 fechas nuevas\nconst seleccion = resultados\n  .filter(f => f.fecha >= fechaInicio)\n  .sort((a, b) => a.fecha - b.fecha)\n  .slice(offset, offset + 3);\n\n// ✏️ Armar mensaje\nconst mensaje = seleccion.map((f, i) =>\n  `📌 ${f.fechaFormateada}\\n${f.destino}`\n).join(\"\\n\\n\");\n\n// ✅ Devolver mensaje y nuevo offset\nreturn [{\n  json: {\n    text: mensaje,\n    fechas_mostradas: offset + seleccion.length\n  }\n}];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1072,
+        2256
+      ],
+      "id": "a1ee43af-f4b1-4d46-9a40-b334ddda27b1",
+      "name": "Fechas Cercanas"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        848,
+        2480
+      ],
+      "id": "b1ac30bc-843c-4fe9-8f76-c4a527693e6d",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const texto = $json.text;\nconst fechaElegida = $json.fecha_elegida.toLowerCase();\n\nlet ubicacion_entrega = \"❌ No se encontró la ubicación correspondiente\";\n\n// Separar el texto en líneas\nconst lineas = texto.split(\"\\n\");\n\nfor (let i = 0; i < lineas.length; i++) {\n  const linea = lineas[i].toLowerCase();\n\n  if (linea.includes(fechaElegida)) {\n    const siguienteLinea = lineas[i + 1] || \"\";\n\n    // Limpiar íconos y espacios extra\n    ubicacion_entrega = siguienteLinea.replace(/[📍⭐✨❌]/g, \"\").trim();\n    break;\n  }\n}\n\nreturn [{ json: { ubicacion_entrega } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        2480
+      ],
+      "id": "74015fd7-f4bb-4d3e-aa9a-2918c1b01a6b",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "370c1246-df4f-4ecc-a6eb-690c4e70ba28",
+              "name": "nombre ",
+              "value": "={{ $json.client_name }}",
+              "type": "string"
+            },
+            {
+              "id": "fdb56c9c-9b33-4797-8acc-827a943276bf",
+              "name": "telefono ",
+              "value": "={{ $json.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "88bf4591-497a-4251-9aa0-eb1939e47762",
+              "name": "producto",
+              "value": "={{ $json.product }}",
+              "type": "string"
+            },
+            {
+              "id": "b553adef-7dee-4ce1-9e8d-04dcdc2bec25",
+              "name": "fecha_entrega",
+              "value": "={{ $json.delivery_date }}",
+              "type": "string"
+            },
+            {
+              "id": "13ff7a19-0165-44a9-9620-6768261ef436",
+              "name": "ubicacion",
+              "value": "={{ $json.delivery_point }}",
+              "type": "string"
+            },
+            {
+              "id": "493e90a7-3e81-49e9-9658-45297a5992db",
+              "name": "precio",
+              "value": "={{ $json.price }}",
+              "type": "string"
+            },
+            {
+              "id": "fbc0938c-a9d4-43db-9c4e-58833111cd9f",
+              "name": "cantidad",
+              "value": "={{ $json.quantity }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        976,
+        128
+      ],
+      "id": "c3e5446a-fca3-4afc-9444-2c7eddc3e950",
+      "name": "datos para registro1"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 3,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1008,
+        528
+      ],
+      "id": "1ad02feb-6688-4f0d-9739-7e019f79867b",
+      "name": "Merge3",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "96c2d3c7-5465-4c44-a419-fc0d9d5bd67f",
+              "name": "fecha_escogida",
+              "value": "={{ $json.body.data.message.conversation }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        352,
+        1584
+      ],
+      "id": "10075f55-fa02-49e0-a4fe-bf6d01326c96",
+      "name": "SET",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cb2c3f5a-d86d-4ea1-83ab-c90cc2dc0077",
+              "name": "fecha_actual",
+              "value": "={{ $json.fecha_actual_legible }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        512,
+        896
+      ],
+      "id": "60736d09-cb71-4f9a-85f2-d9c5ca837c5c",
+      "name": "SET2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1008,
+        928
+      ],
+      "id": "ea162bac-3029-415e-b061-1c92fd315814",
+      "name": "Merge4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.item.json;\n\nconst fechaTexto = item.fecha_actual;\nconst mensajeCliente = item.fecha_escogida?.toLowerCase().normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\") || \"\";\n\nif (!fechaTexto || !mensajeCliente) {\n  return {\n    json: {\n      error: \"Falta 'fecha_actual' o 'fecha_escogida'.\"\n    }\n  };\n}\n\n// Extraer partes de la fecha legible\nconst partes = fechaTexto.match(/(\\w+)\\s(\\d+)\\sde\\s(\\w+)\\sde\\s(\\d+)/i);\nif (!partes) {\n  return {\n    json: {\n      error: \"Formato de 'fecha_actual' no reconocido.\"\n    }\n  };\n}\n\n// Diccionarios\nconst dias = [\"domingo\", \"lunes\", \"martes\", \"miercoles\", \"jueves\", \"viernes\", \"sabado\"];\nconst diasOriginales = [\"domingo\", \"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\"];\nconst meses = [\"enero\", \"febrero\", \"marzo\", \"abril\", \"mayo\", \"junio\", \"julio\", \"agosto\", \"septiembre\", \"octubre\", \"noviembre\", \"diciembre\"];\n\nconst dia = parseInt(partes[2]);\nconst mesTexto = partes[3].toLowerCase();\nconst anio = parseInt(partes[4]);\nconst mesIndex = meses.indexOf(mesTexto);\n\nif (mesIndex === -1) {\n  return {\n    json: {\n      error: \"Mes no válido en 'fecha_actual'.\"\n    }\n  };\n}\n\nconst fechaBase = new Date(anio, mesIndex, dia);\n\n// Buscar día mencionado\nlet diaDetectado = null;\nfor (let i = 0; i < dias.length; i++) {\n  if (mensajeCliente.includes(dias[i])) {\n    diaDetectado = diasOriginales[i]; // Devuelve el día con tilde si corresponde\n    break;\n  }\n}\n\nif (!diaDetectado) {\n  return {\n    json: {\n      error: \"No se detectó ningún día de la semana en el mensaje.\"\n    }\n  };\n}\n\n// Calcular próxima ocurrencia del día\nconst hoy = fechaBase.getDay();\nconst objetivo = diasOriginales.indexOf(diaDetectado);\nlet diasASumar = (objetivo - hoy + 7) % 7;\nif (diasASumar === 0) diasASumar = 7;\n\nconst fechaFinal = new Date(fechaBase);\nfechaFinal.setDate(fechaBase.getDate() + diasASumar);\n\n// Formatear resultado\nconst nombreDia = diasOriginales[fechaFinal.getDay()];\nconst numeroDia = fechaFinal.getDate();\nconst mesFinal = meses[fechaFinal.getMonth()];\nconst anioFinal = fechaFinal.getFullYear();\nconst fechaFormateada = `${nombreDia.charAt(0).toUpperCase() + nombreDia.slice(1)}, ${numeroDia} de ${mesFinal} de ${anioFinal}`;\n\n// Devolver\nreturn {\n  json: {\n    fecha_formateada: fechaFormateada,\n    dia_detectado: diaDetectado\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1296,
+        928
+      ],
+      "id": "bbc4d537-1e37-41b0-87db-eeca93b6f7b8",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "985d8399-4d5e-4116-90c9-43153a83cfb3",
+              "name": "fecha_entrega",
+              "value": "={{ $json.fecha_formateada }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1536,
+        928
+      ],
+      "id": "3d7e0804-43ad-4392-aa34-f8832e5564ca",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6d5cc02a-e7ed-48df-a546-d31cfdd0877b",
+              "leftValue": "={{ $json.message.conversation }}",
+              "rightValue": "Cliente",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "3150d2e3-b5d7-47c2-8395-946ba396b9ed",
+              "leftValue": "={{ $json.message.conversation }}",
+              "rightValue": "Teléfono",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "60f15bd6-5b8a-4660-8ae9-efdb9ce7aee0",
+              "leftValue": "={{ $json.message.conversation }}",
+              "rightValue": "Total a pagar",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2912,
+        560
+      ],
+      "id": "c7de58d3-a297-48ef-a05b-efaf0a70fd3d",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.message.conversation || \"\";\n\n// Funciones auxiliares\nfunction extraer(label, patron) {\n  const match = body.match(patron);\n  return match ? match[1].trim() : \"\";\n}\n\nfunction obtenerDiaSemana(fechaTexto) {\n  const meses = {\n    enero: 0, febrero: 1, marzo: 2, abril: 3, mayo: 4, junio: 5,\n    julio: 6, agosto: 7, septiembre: 8, octubre: 9, noviembre: 10, diciembre: 11\n  };\n  const match = fechaTexto.match(/(\\d{1,2}) de (\\w+)/i);\n  if (!match) return \"Día\";\n  const dia = parseInt(match[1]);\n  const mesNombre = match[2].toLowerCase();\n  const mes = meses[mesNombre];\n  const anioActual = new Date().getFullYear();\n  const fechaObj = new Date(anioActual, mes, dia);\n  const dias = [\"Domingo\", \"Lunes\", \"Martes\", \"Miércoles\", \"Jueves\", \"Viernes\", \"Sábado\"];\n  return dias[fechaObj.getDay()];\n}\n\nfunction formatearHora(horaTexto) {\n  const match = horaTexto?.match(/(\\d{1,2}):(\\d{2})\\s*(am|pm|md)/i);\n  if (!match) return horaTexto;\n  const hora = match[1].padStart(2, \"0\");\n  const minutos = match[2];\n  let meridiano = match[3].toLowerCase();\n  if (meridiano === \"md\") meridiano = \"pm\";\n  return `${hora}:${minutos} ${meridiano.toUpperCase()}`;\n}\n\n// Extraer datos del mensaje\nconst cliente = extraer(\"cliente\", /Cliente:\\s(.+?)(\\n|Teléfono:)/i);\nconst telefono = extraer(\"telefono\", /Teléfono:\\s(\\+?\\d+)/i);\nconst productoBruto = extraer(\"producto\", /Medicamento:\\s(.+?)(\\n|Fecha de entrega:)/i);\nlet fecha = extraer(\"fecha\", /Fecha de entrega:\\s(.+?)(\\n|Ubicación de entrega:)/i);\nconst diaDetectado = obtenerDiaSemana(fecha);\n\n// Evita duplicar el día aunque tenga coma o mayúsculas\nconst normalizado = fecha.toLowerCase().replace(\",\", \"\").trim();\nif (!normalizado.startsWith(diaDetectado.toLowerCase())) {\n  fecha = `${diaDetectado}, ${fecha}`;\n}\nconst direccion = extraer(\"direccion\", /Ubicación de entrega:\\s(.+?)(\\n|Total a pagar:)/i);\n\n// 🔥 Precio a prueba de todo (funciona con emojis, punto final, sin $)\nlet precioRaw = \"\";\nconst matchPrecio = body.match(/Total a pagar:[^\\d]*([\\d]+(?:[.,]\\d{1,2})?)/i);\nif (matchPrecio) {\n  precioRaw = matchPrecio[1].replace(\",\", \".\");\n}\nconst precio = precioRaw ? `$${precioRaw}` : \"\";\n\n// Cantidad y producto\nlet cantidad = 1;\nlet producto = productoBruto;\nconst matchCantidad = productoBruto.match(/^(\\d+)\\s(.+)$/);\nif (matchCantidad) {\n  cantidad = parseInt(matchCantidad[1]);\n  producto = matchCantidad[2];\n}\n\n// Entry y Exit Time\nlet entryTime = \"\";\nlet exitTime = \"\";\nconst matchHorario = body.match(/horario de\\s*\\*?(\\d{1,2}:\\d{2}\\s*(?:am|pm|md))\\s*a\\s*(\\d{1,2}:\\d{2}\\s*(?:am|pm|md))\\*?/i);\nif (matchHorario && matchHorario.length >= 3) {\n  entryTime = formatearHora(matchHorario[1]);\n  exitTime = formatearHora(matchHorario[2]);\n}\n\n// Día dinámico según fecha\nconst dia = obtenerDiaSemana(fecha);\n\n// Delivery person\nconst municipio = \"San Salvador Centro\";\nconst departamento = \"SAN SALVADOR\";\nconst repartidorMunicipios = [\n  \"Nuevo Cuscatlán\", \"San Salvador Centro\", \"Mejicanos\", \"San Marcos\",\n  \"Cuscatancingo\", \"Soyapango\", \"Ilopango\", \"Antiguo Cuscatlán\", \"Apopa\",\n  \"Santa Tecla\", \"San Martín\", \"Lourdes Colón\", \"Ciudad Merliot\", \"Planes de Renderos\"\n];\nconst deliveryMap = {\n  \"San Miguel Centro\": \"YAYA DELIVERY\",\n  \"San Vicente Centro\": \"MARTITA DELIVERY\",\n  \"Sonsonate Centro\": \"MELVIN DELIVERY\",\n  \"Santa Ana Centro\": \"MELARA DELIVERY\",\n  \"Usulután Centro\": \"TSUNAMY DELIVERY\"\n};\nconst deliveryPerson = deliveryMap[municipio] || (repartidorMunicipios.includes(municipio) ? \"REPARTIDOR\" : \"\");\n\n// Salida final\nreturn [\n  {\n    json: {\n      Id: \"\",\n      \"Entry Time\": entryTime,\n      \"Exit Time\": exitTime,\n      \"Client Name\": cliente,\n      \"Delivery Date\": fecha,\n      Department: departamento,\n      Municipality: municipio,\n      Product: producto,\n      \"Sale Person\": \"Estefani Tik tok\",\n      Quantity: cantidad,\n      Price: precio,\n      \"Delivery Person\": deliveryPerson,\n      \"Delivery Point\": direccion,\n      \"Medio Digital\": \"WhatsApp\",\n      Comment: \"\",\n      \"Created At\": \"\",\n      Phone: telefono,\n      \"Delivery Status\": \"PENDIENTE\"\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3152,
+        544
+      ],
+      "id": "05a59071-bfd0-4291-b157-0437b2d58f01",
+      "name": "armar registro de entrega"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "wp_custom_form_data",
+          "mode": "list",
+          "cachedResultName": "wp_custom_form_data"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "id"
+            },
+            {
+              "column": "entry_time",
+              "value": "={{ $json['Entry Time'] }}"
+            },
+            {
+              "column": "exit_time",
+              "value": "={{ $json['Exit Time'] }}"
+            },
+            {
+              "column": "client_name",
+              "value": "={{ $json['Client Name'] }}"
+            },
+            {
+              "column": "delivery_date",
+              "value": "={{ $json['Delivery Date'] }} "
+            },
+            {
+              "column": "department",
+              "value": "={{ $json.Department }}"
+            },
+            {
+              "column": "municipality",
+              "value": "={{ $json.Municipality }}"
+            },
+            {
+              "column": "product",
+              "value": "={{ $json.Product }}"
+            },
+            {
+              "column": "sale_person",
+              "value": "={{ $json['Sale Person'] }}"
+            },
+            {
+              "column": "quantity",
+              "value": "={{ $json.Quantity }}"
+            },
+            {
+              "column": "price",
+              "value": "=${{ $json.Price }}"
+            },
+            {
+              "column": "delivery_person",
+              "value": "={{ $json['Delivery Person'] }}"
+            },
+            {
+              "column": "delivery_point",
+              "value": "={{ $json['Delivery Point'] }}"
+            },
+            {
+              "column": "medio_digital",
+              "value": "={{ $json['Medio Digital'] }}"
+            },
+            {
+              "column": "comment"
+            },
+            {
+              "column": "created_at",
+              "value": "={{ $('formatear_fecha_google_sheets.').item.json.fecha_google_sheets }}"
+            },
+            {
+              "column": "phone",
+              "value": "={{ $json.Phone }}"
+            },
+            {
+              "column": "user_role"
+            },
+            {
+              "column": "delivery_status",
+              "value": "PENDIENTE"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        3696,
+        688
+      ],
+      "id": "fca11e67-87d9-49b3-bb83-ee2a33f99437",
+      "name": "Insert rows in a table",
+      "credentials": {
+        "mySql": {
+          "id": "cgEpuQXtnXe3sffK",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date($json.timestamp_actual);  // Usa la fecha del nodo anterior\n\nconst año = now.getFullYear();\nconst mes = String(now.getMonth() + 1).padStart(2, \"0\");\nconst dia = String(now.getDate()).padStart(2, \"0\");\n\nconst horas = String(now.getHours()).padStart(2, \"0\");\nconst minutos = String(now.getMinutes()).padStart(2, \"0\");\nconst segundos = String(now.getSeconds()).padStart(2, \"0\");\n\nconst fecha_google_sheets = `${año}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;\n\nreturn [\n  {\n    json: {\n      fecha_google_sheets\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3136,
+        832
+      ],
+      "id": "fdf038b8-69dd-45f7-a8bc-dee116c938cf",
+      "name": "formatear_fecha_google_sheets."
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        3472,
+        688
+      ],
+      "id": "6c2a4399-d584-4546-a4f2-704f2dc2475f",
+      "name": "Merge5"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6d5cc02a-e7ed-48df-a546-d31cfdd0877b",
+              "leftValue": "={{ $json.message.conversation }}",
+              "rightValue": "Cliente",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "3150d2e3-b5d7-47c2-8395-946ba396b9ed",
+              "leftValue": "={{ $json.message.conversation }}",
+              "rightValue": "Teléfono",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "60f15bd6-5b8a-4660-8ae9-efdb9ce7aee0",
+              "leftValue": "={{ $json.message.conversation }}",
+              "rightValue": "Total a pagar",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3776,
+        2288
+      ],
+      "id": "f0149442-bc9b-4efd-97bb-85f2b03d02a9",
+      "name": "If1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\n\n// Ajuste de zona horaria El Salvador (UTC-6)\nnow.setUTCHours(now.getUTCHours() - 6);\n\n// Obtener fecha legible\nconst diasSemana = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];\nconst meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];\n\nconst dia = now.getDate();\nconst mes = meses[now.getMonth()];\nconst año = now.getFullYear();\nconst diaSemana = diasSemana[now.getDay()];\nconst hora = now.getHours();\nconst minutos = now.getMinutes();\n\n// Construcción de objetos de utilidad\nreturn [\n  {\n    json: {\n      fecha_actual_legible: `${diaSemana} ${dia} de ${mes} de ${año}`,\n      hora_actual: `${hora}:${minutos.toString().padStart(2, '0')}`,\n      timestamp_actual: now.toISOString(),\n      hora_numérica: hora + (minutos / 60),\n      dia_semana: diaSemana,\n      dia: dia,\n      mes: mes,\n      año: año\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3632,
+        2640
+      ],
+      "id": "b24a6eac-6e01-4d28-91c5-4b8b8bf08565",
+      "name": "fecha_actual1",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $json.message.conversation || \"\";\n\nconst deliveryPerson = $json[\"delivery_person\"] || \"\";\nconst createdAt = $json[\"fecha_google_sheets\"] || \"\";\n\n// Cliente y teléfono\nconst telefono = body.match(/Tel[eé]fono:\\s*([+\\d]+)/)?.[1] || \"\";\nconst cliente = body.match(/Cliente:\\s*([^\\n]+?)\\s+Tel[eé]fono:/)?.[1]?.trim() || \"\";\n\n// Producto y cantidad\nconst productoBruto = body.match(/Medicamento:\\s*(?:\\d+\\s*)?(.+?)(\\n|Fecha de entrega:)/)?.[1]?.trim() || \"\";\nlet cantidad = 1;\nlet producto = productoBruto;\nconst matchCantidad = body.match(/Medicamento:\\s*(\\d+)\\s+(.+?)\\n/);\nif (matchCantidad) {\n  cantidad = parseInt(matchCantidad[1]);\n  producto = matchCantidad[2].trim();\n}\n\n// Precio tolerante\nlet precioRaw = \"\";\nconst matchPrecio = body.match(/Total a pagar:[^\\d]*([\\d]+(?:[.,]\\d{1,2})?)/i);\nif (matchPrecio) {\n  precioRaw = matchPrecio[1].replace(\",\", \".\");\n}\nconst precio = precioRaw ? `$${precioRaw}` : \"\";\n\n// Dirección completa\nconst direccionMatch = body.match(/Ubicaci[oó]n de entrega:\\s*(.+?)(\\n|Total a pagar:)/is);\nconst direccion = direccionMatch?.[1]?.trim() || \"\";\n\n// Horarios dentro de la dirección\nconst matchHorario = direccion.match(/de\\s+(\\d{1,2}):(\\d{2})\\s*(am|pm)?\\s+a\\s+(\\d{1,2}):(\\d{2})\\s*(am|pm)?/i);\nfunction formatearHora(h, m, ampm) {\n  if (!h || !m) return \"\";\n  ampm = ampm?.toUpperCase() || (parseInt(h) < 12 ? \"AM\" : \"PM\");\n  h = h.padStart(2, \"0\");\n  return `${h}:${m} ${ampm}`;\n}\nlet entryTime = \"\";\nlet exitTime = \"\";\nif (matchHorario) {\n  entryTime = formatearHora(matchHorario[1], matchHorario[2], matchHorario[3]);\n  exitTime = formatearHora(matchHorario[4], matchHorario[5], matchHorario[6]);\n}\n\n// Fecha sin duplicados\nlet fechaEntrega = body.match(/Fecha de entrega:\\s*(.+?)(\\n|Municipio:)/)?.[1]?.trim() || \"\";\nfechaEntrega = fechaEntrega.replace(/^([A-Za-záéíóúÁÉÍÓÚ]+),\\s*\\1,/, \"$1,\");\n\n// Departamento y municipio (más tolerante)\nconst departamento = body.match(/Departamento:\\s*([^\\n]+?)\\s+(Municipio|Medicamento):/i)?.[1]?.trim() || \"NO DEFINIDO\";\nconst municipio = body.match(/Municipio:\\s*([^\\n]+?)\\s+(Ubicaci[oó]n|Total a pagar:)/i)?.[1]?.trim() || \"NO DEFINIDO\";\n\n// SALIDA FINAL\nreturn {\n  Id: \"\",\n  \"Entry Time\": entryTime,\n  \"Exit Time\": exitTime,\n  \"Client Name\": cliente,\n  \"Delivery Date\": fechaEntrega,\n  Department: departamento,\n  Municipality: municipio,\n  Product: producto,\n  \"Sale Person\": \"Estefani Tik tok\",\n  Quantity: cantidad,\n  Price: precio,\n  \"Delivery Person\": deliveryPerson,\n  \"Delivery Point\": direccion,\n  \"Medio Digital\": \"WhatsApp\",\n  Comment: \"\",\n  \"Created At\": createdAt,\n  Phone: telefono,\n  \"Delivery Status\": \"PENDIENTE\"\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4960,
+        2144
+      ],
+      "id": "00415738-1eaa-421c-9d20-0f9f470b2719",
+      "name": "armar registro de entrega. E"
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date($json.timestamp_actual);  // Usa la fecha del nodo anterior\n\nconst año = now.getFullYear();\nconst mes = String(now.getMonth() + 1).padStart(2, \"0\");\nconst dia = String(now.getDate()).padStart(2, \"0\");\n\nconst horas = String(now.getHours()).padStart(2, \"0\");\nconst minutos = String(now.getMinutes()).padStart(2, \"0\");\nconst segundos = String(now.getSeconds()).padStart(2, \"0\");\n\nconst fecha_google_sheets = `${año}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;\n\nreturn [\n  {\n    json: {\n      fecha_google_sheets\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3904,
+        2640
+      ],
+      "id": "d98a3113-fa65-40cc-842a-3fc44d6f928d",
+      "name": "formatear_fecha_google_sheets.E"
+    },
+    {
+      "parameters": {
+        "jsCode": "const texto = $json.message?.conversation || \"\";\n\n// Extraer el día completo (hasta justo antes de \"Municipio:\")\nconst dia = (() => {\n  const match = texto.match(/Fecha de entrega:\\s*([A-ZÁÉÍÓÚÑa-záéíóúñ]+,\\s*\\d{1,2}\\s+de\\s+[a-záéíóúñ]+\\s+de\\s+\\d{4})/i);\n  return match ? match[1].trim() : \"\";\n})();\n\n// Extraer ubicación de entrega hasta antes de \"Total a pagar\" o final\nconst destino = (() => {\n  const match = texto.match(/Ubicación de entrega:\\s*(.*?)(?=Total a pagar|¿Hay algo más|$)/is);\n  return match ? match[1].trim() : \"\";\n})();\n\nreturn [\n  {\n    json: {\n      dia_entrega: dia,\n      destino_entrega: destino\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4048,
+        2272
+      ],
+      "id": "a6013b50-1d57-4b83-882e-3560fb235d45",
+      "name": "Extraer Día y Destino"
+    },
+    {
+      "parameters": {
+        "jsCode": "const entrada = $input.first().json;\n\n// Extraer solo el nombre del día (ej. \"MIERCOLES\")\nconst diaEntrega = entrada.dia_entrega?.split(\",\")[0]\n  .normalize(\"NFD\")\n  .replace(/[\\u0300-\\u036f]/g, \"\")\n  .toUpperCase()\n  .trim();\n\nconst destinoEntrega = entrada.destino_entrega\n  ?.normalize(\"NFD\")\n  .replace(/[\\u0300-\\u036f]/g, \"\")\n  .toLowerCase()\n  .trim();\n\nconst registros = $items(\"REGISTRO DE DÍAS Y DESTINOS1\");\n\nfor (const item of registros) {\n  const dia = item.json.DIA?.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").toUpperCase().trim();\n  const destino = item.json.DESTINO?.normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g, \"\").toLowerCase().trim();\n\n  if (dia === diaEntrega && destino === destinoEntrega) {\n    return [\n      {\n        json: {\n          delivery_person: item.json.ENCOMENDISTA\n        }\n      }\n    ];\n  }\n}\n\n// Si no hay match, devolver array vacío\nreturn [];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4576,
+        2288
+      ],
+      "id": "aa6ea20d-29d0-4acc-8f2d-2e7a459f5882",
+      "name": "ENCOMENDISTA"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1C-7WU-RXRcru8H63QzIegnBSIUIAbBKMvZqxLSfopbw",
+          "mode": "list",
+          "cachedResultName": "REGISTRO 45 - NOHEMY WEB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C-7WU-RXRcru8H63QzIegnBSIUIAbBKMvZqxLSfopbw/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 513599299,
+          "mode": "list",
+          "cachedResultName": "Horarios",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1C-7WU-RXRcru8H63QzIegnBSIUIAbBKMvZqxLSfopbw/edit#gid=513599299"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4032,
+        2448
+      ],
+      "id": "5fbeec04-020f-4843-8ae3-6a6db8ac8c45",
+      "name": "REGISTRO DE DÍAS Y DESTINOS1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "P3Eb0Ch6b2KbJTDO",
+          "name": "CORREO FARMA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4368,
+        2304
+      ],
+      "id": "16f24420-7467-4de0-8d14-01273b779284",
+      "name": "Merge7"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 3,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4752,
+        2128
+      ],
+      "id": "193296d8-6ad7-4ce4-b49b-287d0334b068",
+      "name": "Merge8"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "value": "wp_custom_form_data",
+          "mode": "list",
+          "cachedResultName": "wp_custom_form_data"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "id"
+            },
+            {
+              "column": "entry_time",
+              "value": "={{ $json['Entry Time'] }}"
+            },
+            {
+              "column": "exit_time",
+              "value": "={{ $json['Exit Time'] }}"
+            },
+            {
+              "column": "client_name",
+              "value": "={{ $json['Client Name'] }}"
+            },
+            {
+              "column": "delivery_date",
+              "value": "={{ $json['Delivery Date'] }}"
+            },
+            {
+              "column": "department",
+              "value": "={{ $json.Department }}"
+            },
+            {
+              "column": "municipality",
+              "value": "={{ $json.Municipality }}"
+            },
+            {
+              "column": "product",
+              "value": "={{ $json.Product }}"
+            },
+            {
+              "column": "sale_person",
+              "value": "={{ $json['Sale Person'] }}"
+            },
+            {
+              "column": "quantity",
+              "value": "={{ $json.Quantity }}"
+            },
+            {
+              "column": "price",
+              "value": "={{ $json.Price }}"
+            },
+            {
+              "column": "delivery_person",
+              "value": "={{ $json['Delivery Person'] }}"
+            },
+            {
+              "column": "delivery_point",
+              "value": "={{ $json['Delivery Point'] }}"
+            },
+            {
+              "column": "medio_digital",
+              "value": "={{ $json['Medio Digital'] }}"
+            },
+            {
+              "column": "comment"
+            },
+            {
+              "column": "created_at",
+              "value": "={{ $json['Created At'] }}"
+            },
+            {
+              "column": "phone",
+              "value": "={{ $json.Phone }}"
+            },
+            {
+              "column": "user_role"
+            },
+            {
+              "column": "delivery_status",
+              "value": "PENDIENTE"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        5152,
+        2144
+      ],
+      "id": "074277b7-a93d-4170-8c61-298ab6ac9ad5",
+      "name": "Insert rows in a table1",
+      "credentials": {
+        "mySql": {
+          "id": "cgEpuQXtnXe3sffK",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "{{ $('numero').item.json.session_id }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1792,
+        2400
+      ],
+      "id": "bcc380e3-049e-427e-b36c-ae2a79c0f17d",
+      "name": "Postgres Chat Memory3",
+      "credentials": {
+        "postgres": {
+          "id": "ydkQIVhFsjVvxFA0",
+          "name": "Postgres nueva"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Estefani",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -3952,
+        1488
+      ],
+      "id": "5b2febd0-8268-4c59-8973-36dc783119ad",
+      "name": "Webhook",
+      "webhookId": "0e1e3fa4-efdd-4a72-bcc1-9cd84a3fa0c1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8a3032a7-ed4d-4893-ad1f-ecc671fe8b47",
+              "leftValue": "={{ $json.Phone }}",
+              "rightValue": "true ",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -4960,
+        2688
+      ],
+      "id": "da906aec-b947-46e1-8575-fb0de9f7b2cd",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "content": "## EXISTE?",
+        "height": 220,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -5008,
+        2640
+      ],
+      "typeVersion": 1,
+      "id": "4b99ef95-b449-451b-8e18-5d51e4656a2b",
+      "name": "Sticky Note46"
+    },
+    {
+      "parameters": {
+        "content": "## SESSION_ID",
+        "height": 208,
+        "width": 192,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -4624,
+        1888
+      ],
+      "typeVersion": 1,
+      "id": "1ef2039c-0ec5-4582-9b0e-08ac56d7a26d",
+      "name": "Sticky Note31"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2537c8c7-5e49-489b-bb79-cec88d0382de",
+              "name": "instancia",
+              "value": "={{ $json.body.instance }}",
+              "type": "string"
+            },
+            {
+              "id": "b0cf1a57-9d8f-43ea-b0be-0b73f19155e6",
+              "name": "api key",
+              "value": "={{ $json.body.apikey }}",
+              "type": "string"
+            },
+            {
+              "id": "005b2675-68ab-4d46-90b6-8e7b51238299",
+              "name": "url_server",
+              "value": "={{ $json.body.server_url }}",
+              "type": "string"
+            },
+            {
+              "id": "a8a5e62d-9805-421d-9435-c4ca58901ec2",
+              "name": "numero_final",
+              "value": "={{ $json.body.data.key.remoteJid }} ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -320,
+        1920
+      ],
+      "id": "e3d75cb1-07b5-4151-8b2b-ddfefc370113",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -272,
+        2224
+      ],
+      "id": "6b8a5f0f-126f-4c0a-88cb-c0ed8dac90f8",
+      "name": "Merge6"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2320,
+        1008
+      ],
+      "id": "d4c19cf1-d987-4a57-b797-d70ad698af92",
+      "name": "Merge9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.url_server }}/message/sendText/{{ $json.instancia }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $json['api key'] }}"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"number\": \"{{ $('Obtener numero4').item.json.phone_formatted }}\",\n    \"text\": \"{{ $json.mensaje_cliente }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2656,
+        560
+      ],
+      "id": "bfd2ee3e-3af2-4994-9cd4-20b83b3106d6",
+      "name": "HTTP Request4"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2992,
+        2032
+      ],
+      "id": "3a631b91-6db0-48ac-a09a-e1e822733ba3",
+      "name": "Merge10"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Merge10').item.json.url_server }}/message/sendText/{{ $('Merge10').item.json.instancia }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Merge10').item.json['api key'] }}"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"number\": \"{{ $('Obtener numero2').item.json.phone_formatted }}\",\n  \"text\": \"{{ $json.mensaje_cliente }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3456,
+        2032
+      ],
+      "id": "e2ba9248-2010-47e7-b4d3-b65921443f22",
+      "name": "HTTP Request5"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -4400,
+        2608
+      ],
+      "id": "3560803f-5407-4810-9635-3d92260e67fd",
+      "name": "Merge11"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.url_server }}/message/sendText/{{ $json.instancia }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $json['api key'] }}"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"number\": \"{{ $('Obtener numero').item.json.phone_formatted }}\",\n  \"text\": \"{{ $json.mensaje_cliente }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -4304,
+        3056
+      ],
+      "id": "c85fea08-fd5a-487c-a4e5-3b6e33401f54",
+      "name": "HTTP Request6"
+    },
+    {
+      "parameters": {
+        "jsCode": "const mensajecliente = $json.mensaje_cliente.toString().replace(/\\n/g, ' ');\n\nreturn {\n  ...$json,\n  mensaje_cliente: mensajecliente\n};\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2528,
+        1008
+      ],
+      "id": "066b01ef-bc3a-447b-915b-2fc95f3916ab",
+      "name": "Code4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const mensaje_original = $json.mensaje_cliente.toString();\n\nconst mensaje_limpio = mensaje_original\n  .replace(/\\*/g, '')            // quita asteriscos\n  .replace(/\\\\n/g, ' ')          // reemplaza \\n literales por espacio\n  .replace(/\\\\t/g, ' ')          // reemplaza \\t por espacio\n  .replace(/\\s{2,}/g, ' ')       // reduce espacios múltiples\n  .trim();                       // quita espacios al inicio y final\n\nreturn {\n  ...$json,\n  mensaje_cliente: mensaje_limpio\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3168,
+        2032
+      ],
+      "id": "27d8d317-486e-4631-b971-73f20e0d6269",
+      "name": "Code5"
+    },
+    {
+      "parameters": {
+        "url": "https://docs.google.com/document/d/1Z-ggL1B69uq1X7H3MWKrd9OUgz0-h4T6VyeOILFfvV0/edit?usp=drive_link"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -1312,
+        2400
+      ],
+      "id": "eb4987f9-a1da-4ee4-bb95-5a394984263e",
+      "name": "personalidad"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "body.data.message.base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -3840,
+        1840
+      ],
+      "id": "f23d1498-7901-42e8-a2ce-648444bba4d8",
+      "name": "Convertir base64 a binario"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/audio/transcriptions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+            "value": "Bearer OPENAI_API_KEY_REDACTED"
+            },
+            {
+              "name": "Content-Type",
+              "value": "multipart/form-data"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            },
+            {
+              "name": "model",
+              "value": "whisper-1"
+            },
+            {
+              "name": "language",
+              "value": "es"
+            },
+            {
+              "name": "response_format",
+              "value": "json"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -3424,
+        1840
+      ],
+      "id": "a3ccea6a-6345-40ab-8c52-7b84a6b94492",
+      "name": "transcribir audio"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  item.binary.data.fileName = 'audio.ogg';\n  item.binary.data.mimeType = 'audio/ogg';\n  return item;\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3632,
+        1840
+      ],
+      "id": "f09bff30-ea4b-40a0-9224-37fe9c21ba5a",
+      "name": "Code6"
+    },
+    {
+      "parameters": {
+        "jsCode": "return {\n  json: {\n    body: {\n      data: {\n        message: {\n          conversation: $json.text\n        }\n      }\n    }\n  }\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -3248,
+        1840
+      ],
+      "id": "8a26e700-381c-46fe-9fff-0cd7d48846dd",
+      "name": "Code7"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -3456,
+        2208
+      ],
+      "id": "4c3ed956-b14a-4e3d-90e6-a05bfe82813d",
+      "name": "Merge12",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('INTENCION_TEXT').item.json.mensaje_cliente }}",
+        "options": {
+          "systemMessage": "=Eres un agente experto de Farmafamilia encargado de brindarle atencion a los clientes y principal reprogramar entregas fallidas de medicamentos para clientes en zonas con servicio de Repartidor y Delivery. Tu misión es ofrecer fechas y horarios exactos del municipio de {{ $('obtener municipio').item.json.municipalities[0] }}, cumpliendo con todas las reglas de días de entrega, horarios y límites por hora de confirmación.\n\nAntes de responder, asegúrate de usar la memoria para mantener coherencia en la conversación  actual segun su id {{ $('numero').item.json.session_id }}.\n\n\nHoy es {{ $('fecha_actual').item.json.dia_semana }} {{ $('fecha_actual').item.json.dia }} de {{ $('fecha_actual').item.json.mes }}. El cliente escribió a las {{ $('fecha_actual').item.json.hora_actual }} (hora local).\n\n🗺️ Clasificación por zonas:\n1. Zonas con entrega de lunes a domingo (Repartidor sin restricciones):\n\nNuevo Cuscatlán  \nSan Salvador Centro  \nMejicanos  \nSan Marcos  \nCuscatancingo  \nSoyapango  \nIlopango  \nAntiguo Cuscatlán  \nApopa  \nSanta Tecla  \nSan Martín\n\n2. Zonas con entrega de lunes a sábado, con corte a las 3:50 pm (Delivery con restricción):\n\nSi el cliente confirma antes de las 3:50 pm, puedes ofrecer entrega para el día siguiente.  \nSi confirma después, debes ofrecer entrega pasado mañana.\n\nSan Vicente Centro  \nSonsonate Centro  \nSanta Ana Centro  \nUsulután Centro  \nSan Miguel Centro\n\n3. Zonas con entrega de lunes a sábado, solo ciertos días específicos:\n\nLourdes Colón: solo martes, jueves y sábado  \nNo se puede ofrecer cualquier día. Si el cliente pide otra fecha, debes corregirlo amablemente y mostrar los días válidos.\n\n🕒 Horarios disponibles por zona:\nGeneral:  \n🕘 10:00am a 12:00md  \n🕑 2:00pm a 4:00pm\n\nHorarios especiales por zona:\n\nSanta Tecla, Ciudad Merliot, Antiguo Cuscatlán, Nuevo Cuscatlán:  \n🕘 10:00am a 12:00md  \n🕐 1:00pm a 3:00pm\n\nPlanes de Renderos, Lourdes Colón:  \n🕘 10:00am a 2:00pm (bloque extendido)\n\n🧾 Reglas de comportamiento del agente:\nDetecta correctamente el municipio del cliente (ignora mayúsculas, tildes o errores menores).  \nEvalúa si el municipio aplica entrega día siguiente, pasado mañana, o solo en días fijos.  \nVerifica si el mensaje fue antes o después de las 3:50 pm si aplica.  \nMuestra un mensaje profesional, empático y personalizado con la fecha y horarios disponibles.  \n\nSi la zona es Lourdes Colón y el día no aplica, corrige suavemente: y basate en estos ejemplos como referencia.\n\n🧠 Ejemplo para Lourdes:  \nGracias 😊. Para Lourdes Colón tenemos entregas los días martes, jueves y sábado.  \n¿Cuál de esos días le parece mejor, y en qué horario: de 10:00am a 2:00pm?\n\n🧠 Ejemplo para zonas con corte: si hoy fuera jueves  \nClaro 😊. Para {{ $json.municipality }}, podemos agendar la entrega para el *viernes 18* o el *sábado 19 de julio* 📦.  \n¿Cuál de esas fechas prefiere, y en qué horario: de 10:00am a 12:00md o de 2:00pm a 4:00pm?\n\n🧠 Si ya pasó la hora de corte (3:50 pm):  \nPodemos programarlo para el *miércoles 9* o el *jueves 10 de julio* 📦.  \n¿Cuál de esas fechas prefiere, y en qué horario: de 10:00am a 12:00md o de 2:00pm a 4:00pm?\n\n🧠 Zonas con entregas de lunes a domingo (sin restricciones):  \nSi hoy fuera jueves, debes ofrecer **viernes y sábado**.  \nSi hoy es viernes, debes ofrecer **sábado y domingo**.  \nSi hoy es sábado, debes ofrecer **domingo y lunes**.  \nSi hoy es domingo y no hay entregas, ofrece **lunes y martes**.\n\nPerfecto 😊. Para  {{ $json.municipality }} podemos entregar el *sábado 19* o el *domingo 20 de julio* 📦.  \n¿Cuál de esas fechas prefiere, y en qué horario: 10:00am a 12:00md o 2:00pm a 4:00pm?\n\n📌 #IMPORTANTE:  \n- Las fechas arriba son solo **ejemplos**, no deben usarse literalmente.  \n- El agente **no debe ofrecer el mismo día actual como opción**.  \n- Siempre ofrecer **dos fechas específicas y distintas al día de hoy**, según las reglas de entrega del municipio.  \n- Si no hay entregas el domingo, se debe saltar y ofrecer el día hábil siguiente.  \n- Luego de las fechas, ofrecer horarios disponibles: 10:00am a 12:00md y 2:00pm a 4:00pm.  \n- Usar lenguaje claro, profesional y cordial. Se permiten emojis suaves según contexto.\n\n🧠 Regla de consulta de producto:  \nSi el cliente pregunta:  \n“¿Para qué sirve?”  \n“¿En qué me va a ayudar?”  \n“¿Cuál es la dosis?”  \n“¿Tiene contraindicaciones?”  \nO menciona algo como “tengo presión alta”, “soy diabético”, etc.\n\nIMPORTANTE→ Debes consultar la herramienta interna HTTP (ya integrada) para obtener solo la información del medicamento mencionado por el cliente.\nUsa como parámetro el nombre exacto ya confirmado: {{ $json.product }}.\nNo extraigas la información de todos los medicamentos, solo del que corresponde al pedido actual.\n\nUsa como parámetro el nombre exacto ya confirmado: {{ $json.product || $json[\"producto\"] }}.\n\n\nDbes responder con información clara, segura y sin hacer interpretaciones médicas.\n\n🧠 Ejemplo más conversacional y personalizado:  \nSí claro 😊. Fitogastric le va a ayudar bastante si ha estado sintiendo acidez, pesadez o ardor en el estómago.  \nEste producto desinflama el sistema digestivo, cicatriza heridas internas y estabiliza su estómago incluso si come algo pesado. ¿Le parece bien reprogramar su pedido para iniciar a disfrutar sus beneficios? \n\nNUNCA inventes esa info tú mismo.  \nResponde con los datos reales de la tool, de forma clara y cordial.  \nDespués de eso, puedes continuar con la reprogramación o el cierre.\n\n## REGLAS EN LA CONVERSACIÓN  \nToma en cuenta lo siguiente:  \nSiempre debes cerrar tu respuesta con una pregunta.  \nEsto mantiene la conversación fluida y permite avanzar a la siguiente etapa.\n\nSi el cliente hace una pregunta o expresa una duda, tu prioridad es responder con claridad.  \nLuego, retomas la conversación con una pregunta para continuar con la reprogramación del pedido.\n\nCuando el cliente ya eligió la fecha, y tú tienes todos los datos del pedido anterior, debes evitar pedir otra vez datos como nombre, dirección o producto.  \nEn su lugar, responde de forma amable y profesional con el resumen completo del nuevo registro:\n\nRegistro de compra 🛍️  \nCliente: {{ $json.client_name }}  \nTeléfono: {{ $json['telefono '] }}  \nMedicamento: {{ $json.quantity }} {{ $json[\"producto\"] }}  \nFecha de entrega: {{ $('Edit Fields1').item.json.fecha_entrega }}  \nUbicación de entrega: {{ $json.ubicacion }}  \nTotal a pagar: ${{ $json[\"precio\"] }}\n\n##adicional:  \nSi el cliente solicita la entrega para hoy mismo, debes responder amablemente que ya no es posible agendar para hoy porque estamos con agenda llena, y que le preguntes qué otra fecha le queda accesible para recibir el pedido.\n\n🧠 Ejemplo:  \nLo sentimos 🙏, para hoy ya no tenemos entregas disponibles porque nuestra agenda está completa.  \n¿Le parece bien programarlo para otro día? ¿Qué fecha le queda accesible para recibir su pedido?\n\n❌ Evita repetir frases ya enviadas como “estamos para ayudarte”, “si necesita algo más”, “que tenga un excelente día”, etc.  \nSólo despídete una vez, al final de la conversación, si el cliente no deja más preguntas.  \nNo sigas escribiendo si el cliente ya dijo “gracias”, “ok”, “todo bien” o algo similar.\n\nSIEMPRE RESPONDE AMABLE Y AGREGA EMOJIS DE SER NECESARIO PARA QUE SE VEA MEJOR\n\n📌 REGLAS ADICIONALES  \n🧠 Interpretación de intención cuando el cliente menciona que regresará un día específico:  \nSi el cliente dice frases como:  \n“regreso el sábado”  \n“el lunes ya estoy disponible”  \n“cuando llegue le aviso”  \n“ya estaré en casa el jueves”\n\nDEBES:  \nIdentificar ese día como referencia para reprogramar la entrega.  \nOfrecer dos fechas posteriores a ese día, respetando las reglas del municipio.  \nPor ejemplo, si regresa el sábado y está en zona sin entrega domingo, ofrecer lunes y martes.  \nContinuar con los bloques de horario como es habitual.  \nCerrar con una pregunta empática.\n\n🧠 Ejemplo:  \nPerfecto 😊. Si estará de vuelta el sábado, podemos agendar la entrega para el lunes 12 o el martes 13 de agosto 📦.  \n¿Cuál de esas fechas le parece mejor, y en qué horario: de 10:00am a 12:00md o de 2:00pm a 4:00pm?\n\n🧠 Ajuste de intención en mensajes ambiguos o diferidos:  \nSi el cliente responde con frases como:  \n“cuando regrese lo recibo”  \n“le hablo al nomás regrese”  \n“estoy en san miguel, regreso el sábado”\n\nDebes considerar eso como una intención válida de reprogramar. No debes quedarte esperando.  \nDebes tomar la fecha mencionada como referencia y hacer una propuesta activa, como en el ejemplo anterior.\n\n🧠 Manejo de errores menores en la redacción del cliente:  \nDEBES comprender correctamente el mensaje del cliente aunque esté escrito con errores comunes como:  \nMayúsculas/minúsculas mezcladas  \nFalta de tildes  \nErrores ortográficos menores  \nAbreviaciones informales\n\n🧠 SI el cliente menciona que ya recibió el producto (ej: “ya lo tengo”, “sí me llegó”, “ya lo recibí”):  \n- Responde amablemente, confirmando la recepción y agradeciendo su mensaje.  \n- NO ofrecer nuevas fechas ni puntos de entrega.  \n- NO enviar más mensajes si luego el cliente responde con frases de cierre.\n\n🛑 DETECCIÓN DE CIERRE DE CONVERSACIÓN:  \nSi el mensaje más reciente del cliente es una expresión de cierre como:  \n- “gracias”  \n- “muchas gracias”  \n- “ok”  \n- “👍”  \n- “listo”  \n- “todo bien”  \n- “perfecto”  \n- “recibido”  \n- “de acuerdo”\nY **no hay ninguna solicitud nueva o pregunta en la memoria Postgres de su {{ $('numero').item.json.session_id }}. **, entonces:\nConsidera la conversación finalizada.  \n\n##SIEMPRE TIENES QUE SER EMPATICO, AMABLE Y CORDIAL EN CADA RESPUESTA, UTLIZA EMOGIS DE SER NECESARIO Y SIEMPRE TERMINA CON UNA PREGUNTA, HASTA QUE LOGRES REPROGRAMARLO \nejemplo \nSí, Fitodol es un medicamento diseñado para aliviar el dolor articular causado por condiciones como artritis, artrosis, osteoartritis, gota y tendinitis. Ayuda a calmar el dolor, desinflamar las articulaciones, mejorar la movilidad y reducir la rigidez 😄. ¿Le parece bien reprogramar su pedido para iniciar a disfrutar sus beneficios? 📦\n\nMUNICIPIO_CONFIRMADO: {{ $('obtener municipio').item.json.municipalities[0] }}\n\nOBLIGATORIO:\n- Usa EXCLUSIVAMENTE el municipio:  {{ $json.municipality }}.\n- Genera UN ÚNICO mensaje por turno.\n- Propón SOLO dos fechas válidas para ese municipio y los horarios que apliquen.\n\nPROHIBIDO (estricto):\n- Agregar un segundo párrafo con \"en todo caso\", \"también podemos\", \"la próxima semana\" u opciones genéricas.\n- Mencionar o insinuar otras zonas o plantillas de ejemplo (p.ej. \"San Luis Talpa\", \"su zona\", \"Pizza Hut\", etc.).\n- Repetir la propuesta o añadir alternativas fuera del municipio confirmado.\n- Reutilizar ejemplos del prompt; SOLO calcula para el municipio actual.\n\nFORMATO DE SALIDA:\n- Si hay municipio válido → un solo párrafo con (1) propuesta de dos fechas específicas y (2) horarios válidos para  {{ $json.municipality }} . Cierra con UNA pregunta.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        1360,
+        560
+      ],
+      "id": "4013a86f-8b1f-4ec9-b407-3709009a66ef",
+      "name": "AI Agent",
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1344,
+        736
+      ],
+      "id": "04c15dd4-ea85-4e57-b526-67d4a88aa952",
+      "name": "OpenAI Chat Model4",
+      "credentials": {
+        "openAiApi": {
+          "id": "pDno7JBab3nVoLVV",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('numero').item.json.session_id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        1472,
+        720
+      ],
+      "id": "f9164eac-38b6-44bb-bca5-d1ce06fef44e",
+      "name": "Postgres Chat Memory4",
+      "credentials": {
+        "postgres": {
+          "id": "ydkQIVhFsjVvxFA0",
+          "name": "Postgres nueva"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Devuelve lo que el cliente solicita saber, según el síntoma o nombre del producto mencionado por el cliente.",
+        "url": "https://docs.google.com/document/d/1TeTE54NzG78bBzC5UzOKLSbweCcClKTdLsm_X-qbfnE/edit?usp=sharing",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1584,
+        752
+      ],
+      "id": "1c487319-15c2-4315-a643-1e669ca48cd7",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const mensaje_original = $json.mensaje_cliente.toString();\n\nconst mensaje_limpio = mensaje_original\n  .replace(/\\*/g, '')            // quita asteriscos\n  .replace(/\\\\n/g, ' ')          // reemplaza \\n literales por espacio\n  .replace(/\\\\t/g, ' ')          // reemplaza \\t por espacio\n  .replace(/\\s{2,}/g, ' ')       // reduce espacios múltiples\n  .trim();                       // quita espacios al inicio y final\n\nreturn {\n  ...$json,\n  mensaje_cliente: mensaje_limpio\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        2240
+      ],
+      "id": "87dae205-39be-4dc9-b3c1-794c4764fb72",
+      "name": "Code9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Merge6').item.json.url_server }}/message/sendText/{{ $('Merge6').item.json.instancia }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Merge6').item.json['api key'] }}"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"number\": \"{{ $('Obtener numero1').item.json.phone_formatted }}\",\n  \"text\": \"{{ $json.mensaje_cliente }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        128,
+        2240
+      ],
+      "id": "df4bf044-1371-4e67-980d-4cea4cb63112",
+      "name": "HTTP Request7"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Acceder a remoteJid desde la ruta real\nconst remoteJid = $('numero').first().json.body.data.key.remoteJid;\n\n// Limpiar el número (eliminar @s.whatsapp.net y posibles sufijos)\nconst cleanNumber = remoteJid.split(\"@\")[0].split(\":\")[0];\n\n// Devolver el número limpio\nreturn {\n  json: {\n    telefono_cliente: cleanNumber\n  }\n};\n\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1488,
+        1824
+      ],
+      "id": "3b98cf1a-3d4c-4c56-bddc-efc7c0b684da",
+      "name": "obtener from1"
+    },
+    {
+      "parameters": {
+        "content": "## OBTENER FROM CLIENTE",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1456,
+        1696
+      ],
+      "typeVersion": 1,
+      "id": "63f1ca58-bb7d-4e11-aeec-8ff8ae7ba9ae",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## CONSULTA GENERAL",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1728,
+        1696
+      ],
+      "typeVersion": 1,
+      "id": "f32587bd-2dae-4c0d-af6a-7fa2624b93ef",
+      "name": "Sticky Note22"
+    },
+    {
+      "parameters": {
+        "jsCode": "const phone = $input.first().json.telefono_cliente;\n\nconst columns = [\n  \"id\",\n  \"entry_time\",\n  \"exit_time\",\n  \"client_name\",\n  \"delivery_date\",\n  \"department\",\n  \"municipality\",\n  \"product\",\n  \"sale_person\",\n  \"quantity\",\n  \"price\",\n  \"delivery_person\",\n  \"delivery_point\",\n  \"medio_digital\",\n  \"comment\",\n  \"created_at\",\n  \"phone\",\n  \"user_role\",\n  \"delivery_status\"\n].join(\", \");\n\nconst sql = `\n  SELECT ${columns}\n  FROM wp_custom_form_data\n  WHERE phone LIKE '%${phone}%'\n  ORDER BY id DESC\n  LIMIT 1\n`;\n\nreturn [\n  {\n    json: {\n      query: sql.trim(),\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1776,
+        1824
+      ],
+      "id": "db8c54f4-227f-4dfc-81dd-07d049ca642e",
+      "name": "consulta general.1"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $json.query }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        2048,
+        1824
+      ],
+      "id": "5d963b71-5c8f-4a76-aaae-3e01e34128f6",
+      "name": "Execute a SQL query2",
+      "credentials": {
+        "mySql": {
+          "id": "cgEpuQXtnXe3sffK",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Acceder a remoteJid desde la ruta real\nconst remoteJid = $('numero').first().json.body.data.key.remoteJid;\n\n// Limpiar el número (eliminar @s.whatsapp.net y posibles sufijos)\nconst cleanNumber = remoteJid.split(\"@\")[0].split(\":\")[0];\n\n// Devolver el número limpio\nreturn {\n  json: {\n    telefono_cliente: cleanNumber\n  }\n};\n\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        128
+      ],
+      "id": "9272ae45-159c-4b58-a305-14daa1fd72d9",
+      "name": "obtener from2"
+    },
+    {
+      "parameters": {
+        "content": "## OBTENER FROM CLIENTE",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "5bd94429-379d-44a9-b33a-ac74a0b9f71d",
+      "name": "Sticky Note23"
+    },
+    {
+      "parameters": {
+        "content": "## CONSULTA GENERAL",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        272,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "d2e5a339-b473-4b87-b26d-3b3a22efa37a",
+      "name": "Sticky Note24"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "{{ $json.query }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        640,
+        128
+      ],
+      "id": "7035fd5f-17a3-4331-9511-66c5c7f76c39",
+      "name": "Execute a SQL query3",
+      "credentials": {
+        "mySql": {
+          "id": "cgEpuQXtnXe3sffK",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## BASE DE REGISTROS ",
+        "height": 280,
+        "width": 200,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        592,
+        16
+      ],
+      "typeVersion": 1,
+      "id": "325496a3-39b5-40d0-b214-65dc0f52926c",
+      "name": "Sticky Note40"
+    },
+    {
+      "parameters": {
+        "jsCode": "const phone = $input.first().json.telefono_cliente;\n\nconst columns = [\n  \"id\",\n  \"entry_time\",\n  \"exit_time\",\n  \"client_name\",\n  \"delivery_date\",\n  \"department\",\n  \"municipality\",\n  \"product\",\n  \"sale_person\",\n  \"quantity\",\n  \"price\",\n  \"delivery_person\",\n  \"delivery_point\",\n  \"medio_digital\",\n  \"comment\",\n  \"created_at\",\n  \"phone\",\n  \"user_role\",\n  \"delivery_status\"\n].join(\", \");\n\nconst sql = `\n  SELECT ${columns}\n  FROM wp_custom_form_data\n  WHERE phone LIKE '%${phone}%'\n  ORDER BY id DESC\n  LIMIT 1\n`;\n\nreturn [\n  {\n    json: {\n      query: sql.trim(),\n    },\n  },\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        336,
+        128
+      ],
+      "id": "9f9ddd0a-6acb-4ac1-8f51-a81b260850e8",
+      "name": "consulta general.2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Code (Run Once for All Items)\n\n// Helper para extraer conversación\nconst getConv = (obj) => obj?.body?.data?.message?.conversation;\n\n// Cacheo los posibles orígenes una sola vez\nlet mergeConv, webhookConv;\ntry {\n  mergeConv = getConv($items('Merge12', 0)?.[0]?.json);\n} catch (_) {}\n\ntry {\n  webhookConv = getConv($items('Webhook', 0)?.[0]?.json);\n} catch (_) {}\n\nconst out = $input.all().map(item => {\n  const intencion = item.json?.output ?? item.json?.intencion ?? \"\";\n\n  // 1) intento con el item actual\n  const fromCurrent = getConv(item.json);\n  // 2) fallback a Merge12 o Webhook\n  const body = fromCurrent ?? mergeConv ?? webhookConv ?? \"\";\n\n  return { json: { intencion, mensaje_cliente: body } };\n});\n\nreturn out;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2560,
+        2208
+      ],
+      "id": "ae38a0de-e28b-416e-881c-614ea64b1cdc",
+      "name": "INTENCION_TEXT"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "🔀 Tipo de respuesta (texto o audio)": {
+      "main": [
+        [
+          {
+            "node": "Convertir base64 a binario",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge12",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "DETECTAR INTENCION",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "obtener from",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent quejas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Agent rechazo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DETECTAR INTENCION": {
+      "main": [
+        [
+          {
+            "node": "INTENCION_TEXT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent quejas",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent quejas": {
+      "main": [
+        [
+          {
+            "node": "set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent rechazo",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent rechazo": {
+      "main": [
+        [
+          {
+            "node": "set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set": {
+      "main": [
+        [
+          {
+            "node": "Obtener numero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener numero": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensaje limpio": {
+      "main": [
+        [
+          {
+            "node": "Merge11",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "set1": {
+      "main": [
+        [
+          {
+            "node": "Obtener numero1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener numero1": {
+      "main": [
+        [
+          {
+            "node": "Mensaje limpio1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensaje limpio1": {
+      "main": [
+        [
+          {
+            "node": "Merge6",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent quejas",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent rechazo",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent Reprogramados": {
+      "main": [
+        [
+          {
+            "node": "set2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent Reprogramados",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "set2": {
+      "main": [
+        [
+          {
+            "node": "Obtener numero2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener numero2": {
+      "main": [
+        [
+          {
+            "node": "Mensaje limpio2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensaje limpio2": {
+      "main": [
+        [
+          {
+            "node": "Merge10",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "obtener from": {
+      "main": [
+        [
+          {
+            "node": "consulta general.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener municipio": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtiene los destinos solicitados": {
+      "main": [
+        [
+          {
+            "node": "Fechas Cercanas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "REGISTRO DE DIAS Y DESTINOS": {
+      "main": [
+        [
+          {
+            "node": "OBTENERLOS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "obtener from1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Detectar Fecha Elegida",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OBTENERLOS": {
+      "main": [
+        [
+          {
+            "node": "obtiene los destinos solicitados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "fecha_actual",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "obtener from2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "REGISTRO DE DIAS Y DESTINOS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "set4": {
+      "main": [
+        [
+          {
+            "node": "Obtener numero4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Obtener numero4": {
+      "main": [
+        [
+          {
+            "node": "Mensaje limpio4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensaje limpio4": {
+      "main": [
+        [
+          {
+            "node": "Merge9",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "obtener numero": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "fecha_actual": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "SET2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "formatear_fecha_google_sheets.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query1": {
+      "main": [
+        [
+          {
+            "node": "obtener municipio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "crear comentario",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "llenar comment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "crear comentario": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "llenar comment": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "DETECTAR INTENCION",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "numero": {
+      "main": [
+        [
+          {
+            "node": "🔀 Tipo de respuesta (texto o audio)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consulta general.": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent Reprogramados",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent Reprogramados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detectar Fecha Elegida": {
+      "main": [
+        [
+          {
+            "node": "limpiar fecha",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "limpiar fecha": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "datos para registro": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fechas Cercanas": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          },
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "datos para registro1": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SET": {
+      "main": [
+        [
+          {
+            "node": "Merge4",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "SET2": {
+      "main": [
+        [
+          {
+            "node": "Merge4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge4": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "armar registro de entrega",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "armar registro de entrega": {
+      "main": [
+        [
+          {
+            "node": "Merge5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "formatear_fecha_google_sheets.": {
+      "main": [
+        [
+          {
+            "node": "Merge5",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge5": {
+      "main": [
+        [
+          {
+            "node": "Insert rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Extraer Día y Destino",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "fecha_actual1": {
+      "main": [
+        [
+          {
+            "node": "formatear_fecha_google_sheets.E",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "formatear_fecha_google_sheets.E": {
+      "main": [
+        [
+          {
+            "node": "Merge8",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Extraer Día y Destino": {
+      "main": [
+        [
+          {
+            "node": "Merge7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ENCOMENDISTA": {
+      "main": [
+        [
+          {
+            "node": "Merge8",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "REGISTRO DE DÍAS Y DESTINOS1": {
+      "main": [
+        [
+          {
+            "node": "Merge7",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge7": {
+      "main": [
+        [
+          {
+            "node": "ENCOMENDISTA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge8": {
+      "main": [
+        [
+          {
+            "node": "armar registro de entrega. E",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent Reprogramados",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "numero",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Mensaje limpio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Merge6",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge9",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge10",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge6": {
+      "main": [
+        [
+          {
+            "node": "Code9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge9": {
+      "main": [
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge10": {
+      "main": [
+        [
+          {
+            "node": "Code5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge8",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "REGISTRO DE DÍAS Y DESTINOS1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "fecha_actual1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge11": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request6": {
+      "main": [
+        [
+          {
+            "node": "obtener numero",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code5": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "personalidad": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent quejas",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convertir base64 a binario": {
+      "main": [
+        [
+          {
+            "node": "Code6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "transcribir audio": {
+      "main": [
+        [
+          {
+            "node": "Code7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code6": {
+      "main": [
+        [
+          {
+            "node": "transcribir audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code7": {
+      "main": [
+        [
+          {
+            "node": "Merge12",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "SET",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge12": {
+      "main": [
+        [
+          {
+            "node": "DETECTAR INTENCION",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "SET",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "set4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory4": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code9": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener from1": {
+      "main": [
+        [
+          {
+            "node": "consulta general.1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consulta general.1": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query2": {
+      "main": [
+        [
+          {
+            "node": "datos para registro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtener from2": {
+      "main": [
+        [
+          {
+            "node": "consulta general.2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query3": {
+      "main": [
+        [
+          {
+            "node": "datos para registro1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consulta general.2": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "INTENCION_TEXT": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "crear comentario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "82e897e0-f89b-49db-bd28-a9c1a9a46466",
+  "meta": {
+    "instanceId": "a2325c33caabb5c1fd96a6eda715be3ae165a84692adc50fab5ef2c38e8252fc"
+  },
+  "id": "b3t8CxdfsQ0KZ30p",
+  "tags": []
+}
